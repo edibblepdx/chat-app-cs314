@@ -20,5 +20,5 @@ mozilla wiki has info on HTTPS and DOM as well
 [junit](https://junit.org/junit5/)
 
 ### misc
-[typescript - syntax for types](https://www.typescriptlang.org/)
+[typescript - syntax for types](https://www.typescriptlang.org/) <br>
 [coffeescript - easy to read and compiles into javascript](https://coffeescript.org/)
