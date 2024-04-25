@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 //import records from "./routes/record.js";
 
-import authRoutes from "./routes/auth.routes.js";
+//import authRoutes from "./routes/auth.routes.js";
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 	res.send("Hello World");
 });
 
-app.use("api/auth", authRoutes)
+//app.use("api/auth", authRoutes)
 
 // start the Express server
 app.listen(PORT, () => {
