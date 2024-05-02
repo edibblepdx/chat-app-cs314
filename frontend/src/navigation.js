@@ -1,9 +1,12 @@
 
 const Navigation = () =>{
     return (
-        <h1>
-            Welcome
-        </h1>
+        <script className="navbar">
+           Chat App
+           <login>
+                Login
+           </login>
+        </script>
     );
 }
 

@@ -1,6 +1,8 @@
 //import logo from './logo.svg';
 //import './App.css';
 import Navigation from './navigation.js';
+import Chatrooms from './chatrooms.js';
+import ChatBox from './chatbox.js';
 
 function MyButton(){
   function handleClick(){
@@ -18,6 +20,8 @@ export default function MyApp() {
   return(
     <div classname="App">
       <Navigation />
+      <Chatrooms />
+      <ChatBox/>
     </div>
   );
 }

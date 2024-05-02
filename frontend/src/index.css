@@ -3,78 +3,53 @@
 * {
   margin: 0;
   font-family: Roboto;
-  color: #628;
-}
-/*.roboto-thin {
-  font-family: "Roboto", sans-serif;
-  font-weight: 100;
-  font-style: normal;
+  color: rgb(253, 253, 253);
 }
 
-/*This one
-.roboto-light {
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-style: normal;
-}
-
-.roboto-regular {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.roboto-medium {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-style: normal;
-}
-
-.roboto-bold {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.roboto-black {
-  font-family: "Roboto", sans-serif;
-  font-weight: 900;
-  font-style: normal;
-}
-
-.roboto-thin-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 100;
-  font-style: italic;
-}
-
-.roboto-light-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-style: italic;
-}
-
-.roboto-regular-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-style: italic;
-}
-
-.roboto-medium-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-style: italic;
-}
-
-.roboto-bold-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-style: italic;
-}
-
-.roboto-black-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 900;
-  font-style: italic;
-}
+/*
+This is to set a navigation bar
 */
+.navbar{
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  max-width: 1500px;
+  margin: 0 auto;
+  border-bottom: 3px solid rgb(255, 255, 255);
+  background-color: rgb(57, 60, 53);
+}
+
+.navbar login{
+  display: Flex;
+  margin-left: 1300px;
+}
+
+/*
+This is to set a sidebar for the different chat rooms
+*/
+
+.roomBar{
+  padding: 10px;
+  display: inline-block;
+  align-items: left;
+  width: 300px;
+  margin-left: 500;
+  border-right: 3px solid rgb(255, 255, 255);
+  height: 670px;
+  max-height: 100%;
+  overflow: scroll;
+  background-color: rgb(57, 60, 53);
+}
+
+/*
+This is to set a box for the chat room
+*/
+
+.chatBox{
+  padding: 10px;
+  display: inline-block;
+  vertical-align: top;
+  height: 670px;
+  width: 1127px;
+  background-color: rgb(57, 60, 53);
+}
