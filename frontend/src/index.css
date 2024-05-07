@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+* {
+  margin: 0;
+  font-family: Roboto;
+  color: rgb(253, 253, 253);
+}
+
+/*
+This is to set a navigation bar
+*/
+.navbar{
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  max-width: 1500px;
+  margin: 0 auto;
+  border-bottom: 3px solid rgb(255, 255, 255);
+  background-color: rgb(57, 60, 53);
+}
+
+.navbar login{
+  display: Flex;
+  margin-left: 1300px;
+}
+
+/*
+This is to set a sidebar for the different chat rooms
+*/
+
+.roomBar{
+  padding: 10px;
+  display: inline-block;
+  align-items: left;
+  width: 300px;
+  margin-left: 500;
+  border-right: 3px solid rgb(255, 255, 255);
+  height: 670px;
+  max-height: 100%;
+  overflow: scroll;
+  background-color: rgb(57, 60, 53);
+}
+
+/*
+This is to set a box for the chat room
+*/
+
+.chatBox{
+  padding: 10px;
+  display: inline-block;
+  vertical-align: top;
+  height: 670px;
+  width: 1127px;
+  background-color: rgb(57, 60, 53);
+}
