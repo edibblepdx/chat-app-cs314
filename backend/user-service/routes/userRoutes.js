@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors');
-const { getUser, registerUser } = require ('../controllers/userController');
+const { getUser, registerUser, loginUser } = require ('../controllers/userController');
 
 // middleware
 router.use(cors({
@@ -12,17 +12,6 @@ router.use(cors({
 // GET
 router.get('/', getUser);
 router.post('/register', registerUser);
-
-/*
-// GET a user
-router.get('/:id', (req, res) => {
-    res.json({msg: 'GET a user'});
-});
-
-// POST a new user
-router.post('/:id', (req, res) => {
-    res.json({msg: 'POST a new user'});
-});
-*/
+router.post('/login', loginUser);
 
 module.exports = router;
