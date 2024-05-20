@@ -7,11 +7,11 @@ const getUser = (req, res) => {
 
 const registerUser = async (req, res) => {
     try {
-        const {name, email, password} = req.body;
-        // check if name was entered
-        if (!name) {
+        const {username, email, password} = req.body;
+        // check if username was entered
+        if (!username) {
             return res.json({
-                error: 'name is required'
+                error: 'username is required'
             })
         };
         // check if password is good
@@ -31,7 +31,7 @@ const registerUser = async (req, res) => {
         const hashedPassword = await hashPassword(password);
         // create user in database
         const user = await User.create({
-            name
+            username
             , email
             , password: hashedPassword
         });
