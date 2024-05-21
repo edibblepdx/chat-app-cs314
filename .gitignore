@@ -1,0 +1,7 @@
+frontend
+old
+backend/chat-service/node_modules
+backend/chat-service/.env
+backend/user-service/node_modules
+backend/user-service/.env
+
