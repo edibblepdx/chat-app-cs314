@@ -1,12 +1,20 @@
 
+//Navigation Bar
 const Navigation = () =>{
     return (
-        <script className="navbar">
+        <div className="navbar">
            Chat App
            <login>
-                Login
+                <a href="#" style={{
+                    backgroundColor: "white",
+                    color: "black",
+                    borderRadius: "5px",
+                    borderWidth: "4px",
+                    padding: "8px",
+                    display: "inline-block"
+                }}>Login</a>
            </login>
-        </script>
+        </div>
     );
 }
 

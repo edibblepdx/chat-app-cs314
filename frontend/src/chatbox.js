@@ -1,10 +1,18 @@
 const Chatbox = () => {
+    const customInput = () => {
+        return (
+            <div className="inputBox">
+                <input className="customInput" type="text" placeholder="Type something..."/>
+            </div>
+        );
+    }
+
+
     return (
-        <script className="chatBox">
-            <p>
-                Chat Box
-            </p>
-        </script>
+        <div className="chatBox">
+            Chat Box
+            {customInput()}
+        </div>
     );
 };
 
