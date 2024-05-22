@@ -11,7 +11,7 @@ const Navigation = () =>{
                     borderRadius: "5px",
                     borderWidth: "4px",
                     padding: "8px",
-                    display: "inline-block"
+                    display: "inline-block",
                 }}>Login</a>
            </login>
         </div>
