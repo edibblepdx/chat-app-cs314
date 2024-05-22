@@ -7,17 +7,17 @@ import { useNavigate } from 'react-router-dom';
 export default function Register() {
   const navigate = useNavigate();
   const [data, setData] = useState({
-    username: ''
+    name: ''
     , email: ''
     , password: ''
   });
 
   const registerUser = async (e) => {
     e.preventDefault();
-    const {username, email, password} = data;
+    const {name, email, password} = data;
     try {
       const {data} = await axios.post('/user/register', {
-        username
+        name
         , email
         , password
       })
@@ -38,8 +38,8 @@ export default function Register() {
   return (
     <div>
       <form onSubmit={registerUser}>
-        <label>Username</label>
-        <input type='text' placeholder='enter username...' value = {data.username} onChange={(e) => setData({...data, username: e.target.value})} />
+        <label>Name</label>
+        <input type='text' placeholder='enter name...' value = {data.name} onChange={(e) => setData({...data, name: e.target.value})} />
         <label>Email</label>
         <input type='email' placeholder='enter email...' value = {data.email} onChange={(e) => setData({...data, email: e.target.value})} />
         <label>Password</label>
