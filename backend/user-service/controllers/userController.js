@@ -1,6 +1,14 @@
+require('dotenv').config;
 const User = require('../models/userModel');
 const { hashPassword, comparePassword } = require('../helpers/auth');
 const jwt = require('jsonwebtoken');
+const { OAuth2Client, UserRefreshClient } = require('google-auth-library');
+
+const oAuth2Client = new OAuth2Client(
+    process.env.CLIENT_ID
+	, process.env.CLIENT_SECRET
+	, process.env.REDIRECT_URL
+);
 
 const getUser = (req, res) => {
     res.json({msg: 'GET a user'});
@@ -76,6 +84,32 @@ const loginUser = async (req, res) => {
     }
 }
 
+const googleAuth = async (req, res) => {
+    try {
+        const {tokens} = await oAuth2Client.getToken(req.body.code);
+        console.log(tokens);
+        res.json(tokens);
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+const googleRefresh = async (req, res) => {
+    try {
+        const user = new UserRefreshClient(
+            clientId
+            , clientSecret
+            , req.body.refreshToken
+        );
+        const {credentials} = await user.refreshAccessToken();
+        res.json(credentials);
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
 const getProfile = (req, res) => {
     try {
         const {token} = req.cookies;
@@ -98,5 +132,7 @@ module.exports = {
     getUser
     , registerUser
     , loginUser
+    , googleAuth
+    , googleRefresh
     , getProfile
 }
