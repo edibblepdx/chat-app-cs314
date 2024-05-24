@@ -96,3 +96,31 @@ This section styles the chat box
   background-color: rgb(37, 39, 34);
   color: white;
 }
+
+.scrollChat{
+  width: 1040px;
+  height: 550px;
+  display:flex;
+  flex-wrap: wrap;
+  position: absolute;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 20px;
+  margin: 20px;
+  background-color: rgb(57, 60, 53);
+  border-color: azure;
+}
+
+
+.customBub{
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgb(37, 39, 34);
+  max-width: 500px;
+  height: fit-content;
+  margin: 15px;
+  border-radius: 15px;
+  padding: 18px;
+  line-height: 23px;
+  font-size: 15px;
+}
