@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { UserContextProvider } from './context/userContext';
+import { SocketContextProvider } from './context/socketContext';
 
 const clientId = process.env.CLIENT_ID;
 
@@ -13,7 +15,11 @@ root.render(
   <React.StrictMode>
     <GoogleOAuthProvider clientId="633524845603-7a67ggo47goj58blo8f5hfllkjoeb5ot.apps.googleusercontent.com">
       <Router>
-        <App />
+        <UserContextProvider>
+          <SocketContextProvider>
+            <App />
+          </SocketContextProvider>
+        </UserContextProvider>
       </Router>
     </GoogleOAuthProvider>
   </React.StrictMode>
