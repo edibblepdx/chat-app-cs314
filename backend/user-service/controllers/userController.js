@@ -1,6 +1,14 @@
+require('dotenv').config;
 const User = require('../models/userModel');
 const { hashPassword, comparePassword } = require('../helpers/auth');
 const jwt = require('jsonwebtoken');
+const { OAuth2Client, UserRefreshClient } = require('google-auth-library');
+
+const oAuth2Client = new OAuth2Client(
+    process.env.CLIENT_ID
+	, process.env.CLIENT_SECRET
+	, process.env.REDIRECT_URL
+);
 
 const getUser = (req, res) => {
     res.json({msg: 'GET a user'});
@@ -9,11 +17,11 @@ const getUser = (req, res) => {
 // register endpoint
 const registerUser = async (req, res) => {
     try {
-        const {username, email, password} = req.body;
-        // check if username was entered
-        if (!username) {
+        const {name, email, password} = req.body;
+        // check if name was entered
+        if (!name) {
             return res.json({
-                error: 'username is required'
+                error: 'name is required'
             }).status(400);
         }
         // check if password is good
@@ -33,7 +41,7 @@ const registerUser = async (req, res) => {
         const hashedPassword = await hashPassword(password);
         // create user in database
         const user = await User.create({
-            username
+            name
             , email
             , password: hashedPassword
         });
@@ -60,7 +68,7 @@ const loginUser = async (req, res) => {
         // check if passwords match
         const match = await comparePassword(password, user.password);
         if (match) {
-            jwt.sign({email: user.email, id: user._id, username: user.username}, process.env.JWT_SECRET, {}, (err, token) => {
+            jwt.sign({email: user.email, id: user._id, name: user.name}, process.env.JWT_SECRET, {}, (err, token) => {
                 if (err) throw err;
                 res.cookie('token', token).json(user);
             });
@@ -70,6 +78,32 @@ const loginUser = async (req, res) => {
                 error: 'passwords do not match'
             }).status(401);
         }
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+const googleAuth = async (req, res) => {
+    try {
+        const {tokens} = await oAuth2Client.getToken(req.body.code);
+        console.log(tokens);
+        res.json(tokens);
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+const googleRefresh = async (req, res) => {
+    try {
+        const user = new UserRefreshClient(
+            clientId
+            , clientSecret
+            , req.body.refreshToken
+        );
+        const {credentials} = await user.refreshAccessToken();
+        res.json(credentials);
     }
     catch (err) {
         console.log(err);
@@ -98,5 +132,7 @@ module.exports = {
     getUser
     , registerUser
     , loginUser
+    , googleAuth
+    , googleRefresh
     , getProfile
 }
