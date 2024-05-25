@@ -28,12 +28,6 @@ app.use((req, res, next) => {
 // chat routes
 app.use('/', chatRoutes);
 
-// listen for requests
-app.listen(PORT, () => {
-	console.log(`chats is listening on port ${PORT}`);
-})
-
-/*
 // socket.io
 io.on('connection', (socket) => {
 	// user connect
@@ -70,5 +64,5 @@ mongoose.connect(process.env.MONGO_URI)
 	.catch((err) => {
 		console.log(err)
 	});
-*/
+
 
