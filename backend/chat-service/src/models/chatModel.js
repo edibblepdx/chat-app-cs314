@@ -8,11 +8,16 @@ const chatSchema = new Schema({
     },
     users: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        required: true
     }],
+    admin: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
+    },
     messages: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Message'
+        ref: 'Message',
+        required: true
     }]
 }, { timestamps: true });
 

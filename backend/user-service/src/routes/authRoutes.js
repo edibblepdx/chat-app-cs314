@@ -18,6 +18,7 @@ router.use(cors({
 router.get('/', getUser);
 router.post('/register', registerUser);
 router.post('/login', loginUser);
+//router.post('/logout', logoutUser);
 router.post('/google', googleAuth);
 router.post('/google/refresh-token', googleRefresh);
 router.get('/profile', getProfile);

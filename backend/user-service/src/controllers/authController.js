@@ -59,12 +59,12 @@ const registerUser = async (req, res) => {
             , password: hashedPassword
         });
 
-        return res.json(user).status(200);
+        return res.status(200).json(user);
     }
     catch (err) {
-        console.log(err);
+        console.error(err);
     }
-}
+};
 
 // login endpoint
 const loginUser = async (req, res) => {
@@ -95,9 +95,9 @@ const loginUser = async (req, res) => {
         }
     }
     catch (err) {
-        console.log(err);
+        console.error(err);
     }
-}
+};
 
 const googleAuth = async (req, res) => {
     try {
@@ -106,9 +106,9 @@ const googleAuth = async (req, res) => {
         res.json(tokens);
     }
     catch (err) {
-        console.log(err);
+        console.error(err);
     }
-}
+};
 
 const googleRefresh = async (req, res) => {
     try {
@@ -121,9 +121,9 @@ const googleRefresh = async (req, res) => {
         res.json(credentials);
     }
     catch (err) {
-        console.log(err);
+        console.error(err);
     }
-}
+};
 
 const getProfile = (req, res) => {
     try {
@@ -139,9 +139,9 @@ const getProfile = (req, res) => {
         }
     }
     catch (err) {
-        console.log(err);
+        console.error(err);
     }
-}
+};
 
 module.exports = {
     getUser
@@ -150,4 +150,4 @@ module.exports = {
     , googleAuth
     , googleRefresh
     , getProfile
-}
+};

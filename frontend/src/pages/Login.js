@@ -16,21 +16,18 @@ export default function Login() {
     e.preventDefault();
     const {email, password} = data;
     try {
-      const {data} = await axios.post('/user/login', {
-        email
-        , password
-      });
+      const {data} = await axios.post('/user/login', {email, password});
       if (data.error) {
         toast.error(data.error);
       }
       else {
         setData({});
         toast.success('login successful');
-        navigate('/user/dashboard');
+        navigate('/chats');
       }
     }
     catch (err) {
-      console.log(err);
+      console.error(err);
     }
   }
 

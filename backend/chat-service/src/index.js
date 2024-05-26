@@ -17,7 +17,6 @@ const io = new Server(server);			// socket.io
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
-
 app.use((req, res, next) => {
 	console.log(req.path, req.method);
 	next();
@@ -28,23 +27,31 @@ app.use('/', chatRoutes);
 
 // socket.io
 io.on('connection', (socket) => {
-	// user connect
   	console.log('a user connected');
-	// on a message run a callback function to...
+
+	/*
+	socket.on('join_room')
+
+	socket.on('leave_room')
+
+	socket.on('send_message')
+
+	socket.on('receive_message')
+
+	socket.on('typing')
+	*/
+
 	socket.on('chat message', (msg) => {
-		// print the message to the console
 		console.log('message: ' + msg);	
-		// emit the message to all users
 		io.emit('chat message', msg);
 		try {
-			// save the message to the database
 			const message = Message({message: msg});
 			message.save();
 		} catch (err) {
 			console.log(err.message)	
 		}
 	});
-	// user disconnect
+
 	socket.on('disconnect', () => {
 		console.log('user disconnected');
 	});
