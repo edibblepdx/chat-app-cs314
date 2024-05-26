@@ -1,5 +1,4 @@
 require('dotenv').config();
-
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -13,7 +12,11 @@ const chatRoutes = require('./routes/chatRoutes');
 const PORT = process.env.PORT || 8000;	// PORT
 const app = express();					// express app
 const server = createServer(app);		// express server
-const io = new Server(server);			// socket.io
+const io = new Server(server, {
+	cors: {
+		origin: 'http://localhost:3000',
+	}
+});			// socket.io
 
 // middleware
 app.use(cors());
@@ -32,6 +35,15 @@ app.use('/', chatRoutes);
 io.on('connection', (socket) => {
 	// user connect
   	console.log('a user connected');
+
+	// chat creation
+	/*
+	socket.on('create chat', (chat) => {
+		console.log('chat created: ' + chat);
+		io.emit('chat created', chat);
+	});
+	*/
+
 	// on a message run a callback function to...
 	socket.on('chat message', (msg) => {
 		// print the message to the console
