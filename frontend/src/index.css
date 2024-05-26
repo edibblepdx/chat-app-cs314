@@ -33,7 +33,7 @@ This is to set a navigation bar
 }
 
 .navbar a:hover{
-  background-color: blanchedalmond;
+  background-color: rgb(0, 0, 0);
   color:rgb(47, 7, 59);
 }
 
@@ -97,11 +97,30 @@ This section styles the chat box
   color: white;
 }
 
+.sendButton{
+  background-color: rgb(37, 39, 34);
+  text-decoration: none;
+  position: relative;
+  top: 640px;
+  left: 980px;
+  color: white;
+  border-radius: 5px;
+  border-color: none;
+  border-width: 0px;
+  padding: 15.5px;
+  display: flex;
+}
+
+.sendButton:hover{
+  color: gray;
+}
+
+
 .scrollChat{
   width: 1040px;
   height: 550px;
   display:flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   position: absolute;
   overflow-x: hidden;
   overflow-y: auto;
@@ -114,13 +133,19 @@ This section styles the chat box
 
 .customBub{
   display: flex;
+  margin: 15px;
   flex-wrap: wrap;
   background-color: rgb(37, 39, 34);
+  width: fit-content;
   max-width: 500px;
   height: fit-content;
-  margin: 15px;
+  margin: 10px;
   border-radius: 15px;
-  padding: 18px;
+  padding: 10px;
   line-height: 23px;
   font-size: 15px;
+}
+
+.message{
+  overflow-wrap: anywhere;
 }
