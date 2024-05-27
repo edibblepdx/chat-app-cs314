@@ -6,6 +6,8 @@ const { getAvailableChats
         , getSpecificChat
         , createChat
         , deleteChat
+        , sendMessage
+        , getMessages
         , addUserToChat
         , removeUserFromChat
  } = require ('../controllers/chatController');
@@ -27,6 +29,12 @@ router.post('/', authenticateToken, createChat);
 
 // DELETE delete a specific chat room
 router.delete('/:chatId', authenticateToken, deleteChat);
+
+// Post send a message
+router.post('/:chatId/messages', authenticateToken, sendMessage);
+
+// GET get messages
+router.get('/:chatId/messages', authenticateToken, getMessages);
 
 // POST add a new user to a chat
 router.post('/:chatId/join', authenticateToken, addUserToChat);

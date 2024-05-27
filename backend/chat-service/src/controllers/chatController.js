@@ -66,6 +66,47 @@ const deleteChat = async (req, res) => {
     }
 }
 
+const sendMessage = async (req, res) => {
+    try {
+        const { chatId } = req.params;
+        const { message } = req.body;
+        const { _id } = req.user;
+        const chat = await Chat.findById(chatId);
+        if (!chat) {
+            return res.status(404).json({ error: 'Chat not found' });
+        }
+        if (!message) {
+            return res.status(400).json({ error: 'Message is required' });
+        }
+        const newMessage = new Message({
+            message: message,
+            user: _id
+        });
+        await newMessage.save();
+        chat.messages.push(newMessage);
+        await chat.save();
+        res.json(newMessage); 
+    }
+    catch (err) {
+        console.error(err);
+    }
+}
+
+const getMessages = async (req, res) => {
+    try {
+        const { chatId } = req.params;
+        const chat = await Chat.findById(chatId);
+        if (!chat) {
+            return res.status(404).json({ error: 'Chat not found' });
+        }
+        const messages = await Message.find({ _id: { $in: chat.messages } });
+        res.json(messages);
+    }
+    catch (err) {
+        console.error(err);
+    }
+}
+
 const addUserToChat = async (req, res) => {
     try {
        
@@ -89,6 +130,8 @@ module.exports = {
     , getSpecificChat
     , createChat
     , deleteChat
+    , sendMessage
+    , getMessages
     , addUserToChat
     , removeUserFromChat
 }

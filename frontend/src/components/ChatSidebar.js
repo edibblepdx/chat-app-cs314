@@ -60,11 +60,8 @@ export default function ChatSidebar() {
                 </ul>
             </div>
             <div style={{ float: 'right', width: '70%' }}>
-                {selectedChat ? (
-                    <ChatWindow chatId={selectedChat} />
-                ) : (
-                    <p>Select a chat to view the messages</p>
-                )}
+                {selectedChat ? (<ChatWindow chatId={selectedChat} />) 
+                    : (<p>Select a chat to view the messages</p>)}
             </div>
         </div>
     )
