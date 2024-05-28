@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from '../context/userContext';
-import io from 'socket.io-client';
+//import io from 'socket.io-client';
 import ChatWindow from './ChatWindow';
 
 export default function ChatSidebar() {

@@ -11,6 +11,9 @@ export function UserContextProvider({children}) {
             .then(({data}) => {
                 setUser(data);
             })
+            .catch(err => {
+                console.error(err);
+            })
         }
     })
 

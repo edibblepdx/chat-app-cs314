@@ -8,6 +8,7 @@ export default function Navbar() {
       <Link to='/chats'>Chats</Link>
       <Link to='/user/login'>Login</Link>
       <Link to='/user/register'>Register</Link>
+      <Link to='/user/logout'>Logout</Link>
     </nav>
   )
 }

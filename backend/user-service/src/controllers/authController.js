@@ -110,11 +110,16 @@ const loginUser = async (req, res) => {
     }
 };
 
+// logout endpoint
+const logoutUser = (req, res) => {
+    res.clearCookie('token').json({message: 'logged out'});
+};
+
 const googleAuth = async (req, res) => {
     try {
         const {tokens} = await oAuth2Client.getToken(req.body.code);
         console.log(tokens);
-        res.json(tokens);
+        return res.cookie('token', tokens.access_token).json(tokens);
     }
     catch (err) {
         console.error(err);
@@ -158,6 +163,7 @@ module.exports = {
     getUser
     , registerUser
     , loginUser
+    , logoutUser
     , googleAuth
     , googleRefresh
     , getProfile
