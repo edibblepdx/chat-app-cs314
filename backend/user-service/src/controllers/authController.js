@@ -20,8 +20,19 @@ const oAuth2Client = new OAuth2Client(
 	, process.env.REDIRECT_URL
 );
 
-const getUser = (req, res) => {
-    res.json({msg: 'GET a user'});
+// get a user by email
+const getUser = async (req, res) => {
+    try {
+        const {email} = req.params;
+        const user = await User.findOne({ email: email });
+        if (!user) {
+            return res.status(404).json({ error: 'user not found' });
+        }
+        res.json(user);
+    }
+    catch (err) {
+        console.error(err);
+    }
 }
 
 // register endpoint
