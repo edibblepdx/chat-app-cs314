@@ -1,13 +1,77 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: Roboto;
+  color: black;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.login-page{
+  background-color: rgb(57, 60, 53);
+  color: rgb(57, 60, 53);
+  padding: 10px;
+  height: 800px;
+
+}
+
+.text{
+  font-size: 45px;
+  max-width: 600px;
+  text-align: center;
+  overflow-wrap: break-word;
+  font-weight: bold;
+  color: white;
+  position: absolute;
+  top: 90px;
+}
+.inputBox{
+  margin: 50px;
+  position: absolute;
+  top: 200px;
+  left: 150px;
+  display: flex;
+  vertical-align: bottom;
+  width: 200px;
+  color: black;
+  border: none;
+}
+
+.inputBox :focus-visible{
+  outline: none;
+}
+
+.customInput{
+  width: 100%;
+  max-width: 800px;
+  height: 50px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  font-size: 15px;
+  box-sizing: border-box;
+  background-color: rgb(37, 39, 34);
+  color: white;
+}
+
+.submitButton{
+  margin-bottom: 10px;
+  background-color: rgb(37, 39, 34);
+  text-decoration: none;
+  position: relative;
+  top: 350px;
+  left: 90px;
+  color: white;
+  border-radius: 5px;
+  border-color: none;
+  border-width: 0px;
+  padding: 15.5px;
+  display: flex;
+}
+
+.submitButton:hover{
+  color: rgb(167, 167, 167);
+}
+
+.submitButton:active{
+  color: rgb(72, 72, 72);
 }
