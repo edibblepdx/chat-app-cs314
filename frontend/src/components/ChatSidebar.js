@@ -27,9 +27,7 @@ export default function ChatSidebar() {
             setChats(data);
         })
         */
-        if (user) {
-            fetchChats();
-        }
+        fetchChats();
 
         // listen for chat created events and update the chats state
         /*
@@ -49,7 +47,7 @@ export default function ChatSidebar() {
 
     return (
         <div>
-            <div style={{ float: 'left', width: '30%' }}>
+            <div className='roomBar'>
                 <h1>Chat Sidebar</h1>
                 <ul>
                     {chats.map((chat) => (

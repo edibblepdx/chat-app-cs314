@@ -91,6 +91,7 @@ const sendMessage = async (req, res) => {
         await newMessage.save();
         chat.messages.push(newMessage);
         await chat.save();
+
         res.json(newMessage); 
     }
     catch (err) {

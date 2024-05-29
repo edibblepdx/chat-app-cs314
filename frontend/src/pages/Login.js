@@ -89,6 +89,9 @@ export default function Login() {
       <button onClick={() => googleLogin()} className="submitButton" style={{top: "274"}}>
         Sign in with Google 🚀
       </button>
+      <button onClick={() => navigate('/user/register')} className="submitButton" style={{top: "274"}}>
+        Register
+      </button>
     </div>
   )
 }

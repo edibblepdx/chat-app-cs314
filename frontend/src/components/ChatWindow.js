@@ -1,11 +1,16 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
+import ChatInput from './ChatInput';
+import ChatBubble from './ChatBubble';
+import io from 'socket.io-client';
 
 export default function ChatWindow({ chatId }) {
     const [messages, setMessages] = useState([]);
-    const [message, setMessage] = useState('');
+    const chatRef = useRef(null);
+    const socket = io('http://localhost:8001');
 
+    // fetch messages from database
     useEffect(() => {
         const fetchMessages = async () => {
             try {
@@ -19,35 +24,23 @@ export default function ChatWindow({ chatId }) {
         fetchMessages();
     }, [chatId]);
 
-    const inputHandler = (e) => {
-        setMessage(e.target.value);
-    }
+    // Scroll to the bottom of the chat when a new chat comes in
+    useEffect(() => {
+        if (chatRef.current) {
+            chatRef.current.scrollTop = chatRef.current.scrollHeight;
+        }
+    }, [messages]);
 
-    const sendMessage = async () => {
-        try {
-            await axios.post(`/chats/${chatId}/messages`, { message });
-            setMessage('');
-        }
-        catch (err) {
-            console.error(err);
-        }
-    }
+    /*
+    socket.on('chat message', (message) => {
+        setMessages((prevMessages) => [...prevMessages, message]);
+    });
+    */
 
     return (
-        <div>
-            <h1>Chat Window</h1>
-            <ul>
-                {messages.map((msg) => (
-                    <li key={msg._id}>{msg.message}</li>
-                ))}
-            </ul>
-            <input
-                type='text'
-                placeholder='enter message'
-                value={message}
-                onChange={inputHandler}
-            />
-            <button onClick={() => sendMessage()}>Send</button>
+        <div className='chatBox'>
+            <ChatBubble messages={messages} chatRef={chatRef} />
+            <ChatInput chatId={chatId} />
         </div>
     )
 }

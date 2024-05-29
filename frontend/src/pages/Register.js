@@ -75,6 +75,9 @@ export default function Register() {
         </div>
         <button type='submit' className="submitButton" style={{top: "434px"}}>Submit</button>
       </form>
+      <button onClick={() => navigate('/user/login')} className="submitButton" style={{top: "434px"}}>
+        Back to Login
+      </button>
     </div>
   )
 }

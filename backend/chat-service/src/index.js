@@ -11,10 +11,16 @@ const chatRoutes = require('./routes/chatRoutes');
 const PORT = process.env.PORT || 8000;	// PORT
 const app = express();					// express app
 const server = createServer(app);		// express server
-const io = new Server(server);			// socket.io
+const io = new Server(server, {
+	cors: {
+		origin: 'http://localhost:3000',
+	}
+});			// socket.io
 
 // middleware
-app.use(cors());
+app.use(cors({
+	origin: 'http://localhost:3000',
+}));
 app.use(express.json());
 app.use(cookieParser());
 app.use((req, res, next) => {

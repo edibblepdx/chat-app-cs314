@@ -141,20 +141,19 @@ const googleRefresh = async (req, res) => {
     }
 };
 
-const getProfile = (req, res) => {
+const getProfile = async (req, res) => {
     try {
-        const {token} = req.cookies;
+        const { token } = req.cookies;
         if (token) {
-            jwt.verify(token, jwtSecret, {}, (err, user) => {
-                if (err) throw err;
-                res.json(user)
-            })
+            const user = jwt.verify(token, jwtSecret);
+            if (!user) {
+                return res.status(404).json({ error: 'user not found' });
+            }
+            return res.json(user);
+        } else {
+            return res.json(null);
         }
-        else {
-            res.json(null);
-        }
-    }
-    catch (err) {
+    } catch (err) {
         console.error(err);
     }
 };

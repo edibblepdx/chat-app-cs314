@@ -50,14 +50,8 @@ io.on('connection', (socket) => {
 		console.log('message: ' + msg);	
 		// emit the message to all users
 		io.emit('chat message', msg);
-		try {
-			// save the message to the database
-			const message = Message({message: msg});
-			message.save();
-		} catch (err) {
-			console.log(err.message)	
-		}
 	});
+	
 	// user disconnect
 	socket.on('disconnect', () => {
 		console.log('user disconnected');

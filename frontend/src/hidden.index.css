@@ -1,27 +1,15 @@
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 * {
   margin: 0;
   font-family: Roboto;
-  /*color: rgb(253, 253, 253); */
-  /*color: black;*/
-  color:rgb(5, 207, 5)
+  /* color: rgb(253, 253, 253); */
+  color: black;
 }
 
+/*
+This is to set a navigation bar
+*/
 .navbar{
   position: relative;
   padding: 25px;
@@ -128,6 +116,7 @@ This section styles the chat box
   color: gray;
 }
 
+
 .scrollChat{
   width: 1040px;
   height: 550px;
@@ -141,6 +130,7 @@ This section styles the chat box
   background-color: rgb(57, 60, 53);
   border-color: azure;
 }
+
 
 .customBub{
   display: flex;
@@ -161,11 +151,14 @@ This section styles the chat box
   overflow-wrap: anywhere;
 }
 
+/* from login page branch */
+
 .login-page{
   background-color: rgb(57, 60, 53);
   color: rgb(57, 60, 53);
   padding: 10px;
   height: 800px;
+
 }
 
 .text{
@@ -178,7 +171,6 @@ This section styles the chat box
   position: absolute;
   top: 90px;
 }
-
 .inputBox{
   margin: 50px;
   position: absolute;
