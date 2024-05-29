@@ -16,7 +16,10 @@ export default function Login() {
     e.preventDefault();
     const {email, password} = data;
     try {
-      const {data} = await axios.post('/user/login', {email, password});
+      const {data} = await axios.post('/user/login', {
+        email
+        , password
+      });
       if (data.error) {
         toast.error(data.error);
       }
@@ -27,7 +30,7 @@ export default function Login() {
       }
     }
     catch (err) {
-      console.error(err);
+      console.log(err);
     }
   }
 
@@ -45,25 +48,47 @@ export default function Login() {
   });
 
   return (
-    <div>
+    <div className="login-page">
+      <text className="text">
+        Already Have an Account? Sign in Here
+      </text>
       <form onSubmit={loginUser}>
-        <label>Email</label>
-        <input 
+        <label style={{
+          top: "264px",
+          left: "100px",
+          position: "absolute",
+          color: "white",
+          fontSize: "20px"
+        }}>Email</label>
+        <div className="inputBox">
+          <input className="customInput"
           type='email' 
-          placeholder='enter email...' 
+          placeholder='Enter email...' 
           value = {data.email} 
           onChange={(e) => setData({...data, email: e.target.value})} 
         />
-        <label>Password</label>
-        <input 
-          type='text' 
-          placeholder='enter password...' 
-          value = {data.password} 
-          onChange={(e) => setData({...data, password: e.target.value})} 
-        />
-        <button type='submit'>Submit</button>
+        </div>
+        <label style={{
+            top: "334px",
+            left: "100px",
+            position: "absolute",
+            color: "white",
+            fontSize: "20px"
+        }}>Password</label>
+
+        <div className="inputBox" style={{top: "274px"}}>
+          <input className="customInput"
+            type='text' 
+            placeholder='Enter password...' 
+            value = {data.password} 
+            onChange={(e) => setData({...data, password: e.target.value})} 
+          />
+        </div>
+        <button type='submit' className="submitButton">Submit</button>
       </form>
-      <button onClick={() => googleLogin()}>Sign in with Google 🚀</button>
+      <button onClick={() => googleLogin()} className="submitButton" style={{top: "274"}}>
+        Sign in with Google 🚀
+      </button>
     </div>
   )
 }

@@ -10,12 +10,16 @@
 This is to set a navigation bar
 */
 .navbar{
-  padding: 30px;
+  position: relative;
+  padding: 25px;
+  padding-right: 943px;
   display: flex;
   align-items: center;
-  max-width: 1500px;
-  margin: 0 auto;
+  width: 500px;
+  max-width: 100%;
+  align-content: center;
   border-bottom: 3px solid rgb(255, 255, 255);
+  border-right: 3px solid white;
   background-color: rgb(57, 60, 53);
 }
 
@@ -24,32 +28,196 @@ This is to set a navigation bar
   margin-left: 1300px;
 }
 
+.navbar a{
+  text-decoration: none;
+}
+
+.navbar a:hover{
+  background-color: rgb(0, 0, 0);
+  color:rgb(47, 7, 59);
+}
+
 /*
 This is to set a sidebar for the different chat rooms
 */
 
 .roomBar{
   padding: 10px;
-  display: inline-block;
-  align-items: left;
+  display: flex;
+  align-items: right;
+  position: absolute;
   width: 300px;
-  margin-left: 500;
   border-right: 3px solid rgb(255, 255, 255);
-  height: 670px;
-  max-height: 100%;
-  overflow: scroll;
+  height: 727px;
   background-color: rgb(57, 60, 53);
 }
 
 /*
-This is to set a box for the chat room
+This section styles the chat box
 */
 
 .chatBox{
   padding: 10px;
-  display: inline-block;
-  vertical-align: top;
-  height: 670px;
-  width: 1127px;
+  position: absolute;
+  top: 91px;
+  left: 323px;
+  border-top: 3px white;
+  display: flex;
+  height: 727px;
+  width: 1125px;
   background-color: rgb(57, 60, 53);
+}
+
+.inputBox{
+  margin: 50px;
+  position: absolute;
+  top: 600px;
+  left: 130px;
+  display: flex;
+  vertical-align: bottom;
+  width: 800px;
+  color: black;
+  border: none;
+}
+
+.inputBox :focus-visible{
+  outline: none;
+}
+
+.customInput{
+  width: 100%;
+  max-width: 800px;
+  height: 50px;
+  padding: 10px 15px;
+  border-radius: 15px;
+  border: none;
+  font-size: 15px;
+  box-sizing: border-box;
+  background-color: rgb(37, 39, 34);
+  color: white;
+}
+
+.sendButton{
+  background-color: rgb(37, 39, 34);
+  text-decoration: none;
+  position: relative;
+  top: 640px;
+  left: 980px;
+  color: white;
+  border-radius: 5px;
+  border-color: none;
+  border-width: 0px;
+  padding: 15.5px;
+  display: flex;
+}
+
+.sendButton:hover{
+  color: gray;
+}
+
+
+.scrollChat{
+  width: 1040px;
+  height: 550px;
+  display:flex;
+  flex-direction: column;
+  position: absolute;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 20px;
+  margin: 20px;
+  background-color: rgb(57, 60, 53);
+  border-color: azure;
+}
+
+
+.customBub{
+  display: flex;
+  margin: 15px;
+  flex-wrap: wrap;
+  background-color: rgb(37, 39, 34);
+  width: fit-content;
+  max-width: 500px;
+  height: fit-content;
+  margin: 10px;
+  border-radius: 15px;
+  padding: 10px;
+  line-height: 23px;
+  font-size: 15px;
+}
+
+.message{
+  overflow-wrap: anywhere;
+}
+
+/* from login page branch */
+
+.login-page{
+  background-color: rgb(57, 60, 53);
+  color: rgb(57, 60, 53);
+  padding: 10px;
+  height: 800px;
+
+}
+
+.text{
+  font-size: 45px;
+  max-width: 600px;
+  text-align: center;
+  overflow-wrap: break-word;
+  font-weight: bold;
+  color: white;
+  position: absolute;
+  top: 90px;
+}
+.inputBox{
+  margin: 50px;
+  position: absolute;
+  top: 200px;
+  left: 150px;
+  display: flex;
+  vertical-align: bottom;
+  width: 200px;
+  color: black;
+  border: none;
+}
+
+.inputBox :focus-visible{
+  outline: none;
+}
+
+.customInput{
+  width: 100%;
+  max-width: 800px;
+  height: 50px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  font-size: 15px;
+  box-sizing: border-box;
+  background-color: rgb(37, 39, 34);
+  color: white;
+}
+
+.submitButton{
+  margin-bottom: 10px;
+  background-color: rgb(37, 39, 34);
+  text-decoration: none;
+  position: relative;
+  top: 350px;
+  left: 90px;
+  color: white;
+  border-radius: 5px;
+  border-color: none;
+  border-width: 0px;
+  padding: 15.5px;
+  display: flex;
+}
+
+.submitButton:hover{
+  color: rgb(167, 167, 167);
+}
+
+.submitButton:active{
+  color: rgb(72, 72, 72);
 }
