@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from '../context/userContext';
 //import io from 'socket.io-client';
-import ChatWindow from './ChatWindow';
+import ChatBox from './ChatBox';
 
 export default function ChatSidebar() {
     const [chats, setChats] = useState([]);
@@ -58,8 +58,9 @@ export default function ChatSidebar() {
                 </ul>
             </div>
             <div style={{ float: 'right', width: '70%' }}>
-                {selectedChat ? (<ChatWindow chatId={selectedChat} />) 
-                    : (<p>Select a chat to view the messages</p>)}
+                {selectedChat ? (<ChatBox chatId={selectedChat} />
+                ) : (
+                <p>Select a chat to view the messages</p>)}
             </div>
         </div>
     )
