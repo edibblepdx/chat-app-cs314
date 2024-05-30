@@ -37,9 +37,9 @@ export default function Register() {
 
   return (
     <div className="login-page">
-      <text className="text" style={{left: "50px"}}>
+      <div className="text" style={{left: "50px"}}>
         Register New Account
-      </text>
+      </div>
       <form onSubmit={registerUser}>
         <label style={{
           position: "absolute",

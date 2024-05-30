@@ -3,12 +3,13 @@ import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import ChatInput from './ChatInput';
 import ChatBubble from './ChatBubble';
-import io from 'socket.io-client';
+//import io from 'socket.io-client';
+import { socket } from '../socket';
 
 export default function ChatWindow({ chatId }) {
     const [messages, setMessages] = useState([]);
     const chatRef = useRef(null);
-    const socket = io('http://localhost:8001');
+    //const socket = io('http://localhost:8001');
 
     // fetch messages from database
     useEffect(() => {
@@ -30,12 +31,23 @@ export default function ChatWindow({ chatId }) {
             chatRef.current.scrollTop = chatRef.current.scrollHeight;
         }
     }, [messages]);
+ 
+    // realtime messages
+    useEffect(() => {
+        // join chat room
+        socket.connect()
+        socket.emit('join room', chatId);
 
-    /*
-    socket.on('chat message', (message) => {
-        setMessages((prevMessages) => [...prevMessages, message]);
-    });
-    */
+        // listen for messages
+        socket.on('chat message', (message) => {
+            setMessages((prevMessages) => [...prevMessages, message]);
+        });
+
+        return () => {
+            socket.disconnect();
+        }
+    }, []); 
+    
 
     return (
         <div className='chatBox'>

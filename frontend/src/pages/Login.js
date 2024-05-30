@@ -49,9 +49,9 @@ export default function Login() {
 
   return (
     <div className="login-page">
-      <text className="text">
+      <div className="text">
         Already Have an Account? Sign in Here
-      </text>
+      </div>
       <form onSubmit={loginUser}>
         <label style={{
           top: "264px",

@@ -5,6 +5,7 @@ export const UserContext = createContext({});
 
 export function UserContextProvider({children}) {
     const [user, setUser] = useState(null);
+    /*
     useEffect(() => {
         const fetchUser = async () => {
             try {
@@ -20,6 +21,7 @@ export function UserContextProvider({children}) {
             fetchUser();
         }
     }, [user])
+    */
 
     return (
         <UserContext.Provider value={{ user, setUser }}>

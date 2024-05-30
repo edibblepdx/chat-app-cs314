@@ -12,7 +12,7 @@ export default function Navbar() {
         <Link to='/user/login'>Login</Link>
         <Link to='/user/register'>Register</Link>
       </nav>
-      <login>
+      <div>
         <a href="#" style={{
           backgroundColor: "white",
           color: "black",
@@ -21,7 +21,7 @@ export default function Navbar() {
           padding: "8px",
           display: "inline-block",
         }}>Login</a>
-      </login>
+      </div>
       <LogoutButton />
     </div>
   );

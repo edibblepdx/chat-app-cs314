@@ -5,8 +5,8 @@ const cors = require('cors');
 const { createServer } = require('node:http');
 const { Server } = require('socket.io');
 const cookieParser = require('cookie-parser');
-const Message = require('./models/messageModel');
 const chatRoutes = require('./routes/chatRoutes');
+const events = require('./events');
 
 const PORT = process.env.PORT || 8000;	// PORT
 const app = express();					// express app
@@ -31,37 +31,38 @@ app.use((req, res, next) => {
 // chat routes
 app.use('/', chatRoutes);
 
-// socket.io
-io.on('connection', (socket) => {
-  	console.log('a user connected');
+// socket.io middleware
+/*
+io.engine.use((req, res, next) => {
+  const isHandshake = req._query.sid === undefined;
+  if (!isHandshake) {
+    return next();
+  }
 
-	/*
-	socket.on('join_room')
+  const header = req.headers["authorization"];
 
-	socket.on('leave_room')
+  if (!header) {
+    return next(new Error("no token"));
+  }
 
-	socket.on('send_message')
+  if (!header.startsWith("bearer ")) {
+    return next(new Error("invalid token"));
+  }
 
-	socket.on('receive_message')
+  const token = header.substring(7);
 
-	socket.on('typing')
-	*/
-
-	socket.on('chat message', (msg) => {
-		console.log('message: ' + msg);	
-		io.emit('chat message', msg);
-		try {
-			const message = Message({message: msg});
-			message.save();
-		} catch (err) {
-			console.log(err.message)	
-		}
-	});
-
-	socket.on('disconnect', () => {
-		console.log('user disconnected');
-	});
+  jwt.verify(token, jwtSecret, (err, decoded) => {
+    if (err) {
+      return next(new Error("invalid token"));
+    }
+    req.user = decoded.data;
+    next();
+  });
 });
+*/
+
+// socket.io events
+events(io);
 
 // connect to database
 mongoose.connect(process.env.MONGO_URI)
