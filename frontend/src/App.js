@@ -9,8 +9,6 @@ import Register from './pages/Register';
 import axios from 'axios';
 import { Toaster } from 'react-hot-toast';
 import { socket } from './socket';
-import ConnectionState from './components/socket/ConnectionState';
-import ConnectionManager from './components/socket/ConnectionManager';
 
 axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
@@ -40,8 +38,6 @@ export default function App() {
 
   return (
     <div>
-      <ConnectionState isConnected={isConnected} />
-      <ConnectionManager />
       <Navbar />
       <Toaster position='top-right' toastOptions={{duration: 2000}} />
       <Routes>
