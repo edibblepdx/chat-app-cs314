@@ -31,14 +31,19 @@ export default function CreateChat() {
         }
     }
     return (
-        <div>
+        <div style={{
+            backgroundColor: "rgb(57, 60, 53)",
+            width: "320px",
+            maxHeight: "90px"
+            }}>
             <input
+                className="inputRoom"
                 type='text'
-                placeholder='enter chat name'
+                placeholder='Enter chat name'
                 value={chat}
                 onChange={inputHandler}
             />
-            <button onClick={() => createChat()}>Create</button>
+            <button onClick={() => createChat()} className="createButton">Create</button>
         </div>
     )
 }

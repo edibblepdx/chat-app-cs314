@@ -16,7 +16,11 @@ export default function LogoutButton() {
     
     return (
         <div>
-            <button onClick={logoutUser}>Logout</button>
+            <button onClick={logoutUser} className="login-out"
+            style={{
+                left: "1360px",
+                top: "18px"
+            }}>Logout</button>
         </div>
     );
 }

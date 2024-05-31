@@ -60,7 +60,7 @@ export default function Register() {
           fontSize: "20px"
         }}>Email</label>
         <div className="inputBox" style={{top: "274px"}}>
-          <input type='email' placeholder='enter email...' value = {data.email} onChange={(e) => setData({...data, email: e.target.value})} className="customInput"/>
+          <input type='email' placeholder='Enter email...' value = {data.email} onChange={(e) => setData({...data, email: e.target.value})} className="customInput"/>
         </div>
 
         <label style={{
@@ -71,7 +71,7 @@ export default function Register() {
           fontSize: "20px"
         }}>Password</label>
         <div className="inputBox" style={{top: "344px"}}>
-          <input type='text' placeholder='enter password...' value = {data.password} onChange={(e) => setData({...data, password: e.target.value})} className="customInput"/>
+          <input type='text' placeholder='Enter password...' value = {data.password} onChange={(e) => setData({...data, password: e.target.value})} className="customInput"/>
         </div>
         <button type='submit' className="submitButton" style={{top: "434px"}}>Submit</button>
       </form>
