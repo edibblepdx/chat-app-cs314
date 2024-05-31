@@ -6,7 +6,7 @@ const { createServer } = require('node:http');
 const { Server } = require('socket.io');
 const cookieParser = require('cookie-parser');
 const chatRoutes = require('./routes/chatRoutes');
-const events = require('./events');
+const events = require('./events/chatEvents');
 
 const PORT = process.env.PORT || 8000;	// PORT
 const app = express();					// express app

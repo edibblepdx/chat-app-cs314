@@ -1,6 +1,6 @@
 require('dotenv').config();
-const Chat = require("./models/chatModel");
-const Message = require("./models/messageModel");
+const Chat = require("../models/chatModel");
+const Message = require("../models/messageModel");
 const jwt = require('jsonwebtoken');
 
 jwtSecret = process.env.JWT_SECRET;
@@ -33,7 +33,8 @@ module.exports = (io) => {
             try {
                 // Extract userId from token
                 const decoded = jwt.verify(token, jwtSecret);
-                const _id = decoded.id;
+                const id = decoded.id;
+                const name = decoded.name;
                 // find chat
                 const chat = await Chat.findById(roomId);
                 if (!chat) {
@@ -43,7 +44,8 @@ module.exports = (io) => {
                 // create message
                 const newMessage = new Message({
                     message: msg,
-                    user: _id
+                    userId: id,
+                    userName: name
                 });
                 // save message and chat
                 await newMessage.save();

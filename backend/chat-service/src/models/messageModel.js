@@ -6,10 +6,14 @@ const messageSchema = new Schema({
         type: String,
         required: true
     },
-    user: {
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
     }, 
+    userName: {
+        type: String,
+        required: true
+    }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Message', messageSchema);

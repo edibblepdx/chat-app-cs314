@@ -76,7 +76,7 @@ const sendMessage = async (req, res) => {
     try {
         const { chatId } = req.params;
         const { message } = req.body;
-        const { _id } = req.user;
+        const { _id, name } = req.user;
         const chat = await Chat.findById(chatId);
         if (!chat) {
             return res.status(404).json({ error: 'Chat not found' });
@@ -86,7 +86,8 @@ const sendMessage = async (req, res) => {
         }
         const newMessage = new Message({
             message: message,
-            user: _id
+            userId: _id,
+            userName: name
         });
         await newMessage.save();
         chat.messages.push(newMessage);
