@@ -60,8 +60,8 @@ export default function Login() {
           color: "white",
           fontSize: "20px"
         }}>Email</label>
-        <div className="inputBox">
-          <input className="customInput"
+        <div className="inputLogin">
+          <input className="customInputLogin"
           type='email' 
           placeholder='Enter email...' 
           value = {data.email} 
@@ -76,8 +76,8 @@ export default function Login() {
             fontSize: "20px"
         }}>Password</label>
 
-        <div className="inputBox" style={{top: "274px"}}>
-          <input className="customInput"
+        <div className="inputLogin" style={{top: "274px"}}>
+          <input className="customInputLogin"
             type='text' 
             placeholder='Enter password...' 
             value = {data.password} 

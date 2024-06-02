@@ -4,6 +4,7 @@ import axios from 'axios';
 import { UserContext } from '../context/userContext';
 //import io from 'socket.io-client';
 import ChatBox from './ChatBox';
+import addUser from './icons8-add-user-30.png';
 
 export default function ChatSidebar() {
     const [chats, setChats] = useState([]);
@@ -48,14 +49,19 @@ export default function ChatSidebar() {
     return (
         <div>
             <div className='roomBar'>
-                <h1>Chat Sidebar</h1>
-                <ul>
+                <h1>Chats</h1>
+                <div>
                     {chats.map((chat) => (
-                        <li key={chat._id} onClick={() => handleChatSelection(chat._id)}>
+                        <div key={chat._id} onClick={() => handleChatSelection(chat._id)} className="roomBubble">
                             {chat.name}
-                        </li>
+
+                            <div className="addUserButton">
+                                <img src={addUser} alt="Add user" className="addUserIcon"/>
+                            </div>
+
+                        </div>
                     ))}
-                </ul>
+                </div>
             </div>
             <div style={{ float: 'right', width: '70%' }}>
                 {selectedChat ? (<ChatBox chatId={selectedChat} />

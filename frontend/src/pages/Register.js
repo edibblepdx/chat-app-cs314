@@ -48,8 +48,8 @@ export default function Register() {
           color: "white",
           fontSize: "20px"
         }}>Name</label>
-        <div className="inputBox">
-          <input type='text' placeholder='Enter name...' value = {data.name} onChange={(e) => setData({...data, name: e.target.value})} className="customInput"/>
+        <div className="inputLogin">
+          <input type='text' placeholder='Enter name...' value = {data.name} onChange={(e) => setData({...data, name: e.target.value})} className="customInputLogin"/>
         </div>
 
         <label style={{
@@ -59,8 +59,8 @@ export default function Register() {
           color: "white",
           fontSize: "20px"
         }}>Email</label>
-        <div className="inputBox" style={{top: "274px"}}>
-          <input type='email' placeholder='Enter email...' value = {data.email} onChange={(e) => setData({...data, email: e.target.value})} className="customInput"/>
+        <div className="inputLogin" style={{top: "274px"}}>
+          <input type='email' placeholder='Enter email...' value = {data.email} onChange={(e) => setData({...data, email: e.target.value})} className="customInputLogin"/>
         </div>
 
         <label style={{
@@ -70,8 +70,8 @@ export default function Register() {
           color: "white",
           fontSize: "20px"
         }}>Password</label>
-        <div className="inputBox" style={{top: "344px"}}>
-          <input type='text' placeholder='Enter password...' value = {data.password} onChange={(e) => setData({...data, password: e.target.value})} className="customInput"/>
+        <div className="inputLogin" style={{top: "344px"}}>
+          <input type='text' placeholder='Enter password...' value = {data.password} onChange={(e) => setData({...data, password: e.target.value})} className="customInputLogin"/>
         </div>
         <button type='submit' className="submitButton" style={{top: "434px"}}>Submit</button>
       </form>

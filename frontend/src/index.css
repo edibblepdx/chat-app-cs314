@@ -49,6 +49,12 @@ code {
   padding: 8px;
   display: inline-block;
 }
+
+.login-out:hover{
+  background-color: gray;
+  transition: 0.2s;
+  cursor: pointer;
+}
 .login-out:active{
   background-color: gray;
 }
@@ -64,6 +70,7 @@ This is to set a sidebar for the different chat rooms
 .roomBar{
   padding: 10px;
   display: flex;
+  flex-direction: column;
   align-items: right;
   position: absolute;
   width: 300px;
@@ -102,7 +109,45 @@ This is to set a sidebar for the different chat rooms
 .createButton:hover{
   background-color: rgb(156, 156, 156);
   transition: 0.2s;
+  cursor: pointer;
 }
+
+.roomBubble{
+  background-color: white;
+  margin-top: 20px;
+  display: flex;
+  right: 50px;
+  color: black;
+  padding: 15px;
+  border-radius: 3px;
+  align-content:center;
+  overflow: hidden;
+  width: 100%;
+  max-width: 200px;
+  align-items: center;
+}
+
+.roomBubble:hover{
+  background-color: gray;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.addUserButton{
+  background-color: white;
+  display: flex;
+  cursor: pointer;
+  position: absolute;
+  left: 250px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.addUserIcon{
+  width: 24px;
+  height: 24px;
+}
+
 /*
 This section styles the chat box
 */
@@ -110,11 +155,11 @@ This section styles the chat box
 .chatBox{
   padding: 10px;
   position: absolute;
-  top: 91px;
+  top: 72px;
   left: 323px;
   border-top: 3px white;
   display: flex;
-  height: 727px;
+  height: 789px;
   width: 1125px;
   background-color: rgb(57, 60, 53);
 }
@@ -152,8 +197,8 @@ This section styles the chat box
   background-color: rgb(37, 39, 34);
   text-decoration: none;
   position: relative;
-  top: 640px;
-  left: 980px;
+  top: 1px;
+  left: 10px;
   color: white;
   border-radius: 5px;
   border-color: none;
@@ -217,7 +262,7 @@ This section styles the chat box
   top: 90px;
 }
 
-.inputBox{
+.inputLogin{
   margin: 50px;
   position: absolute;
   top: 200px;
@@ -229,11 +274,11 @@ This section styles the chat box
   border: none;
 }
 
-.inputBox :focus-visible{
+.inputLogin :focus-visible{
   outline: none;
 }
 
-.customInput{
+.customInputLogin{
   width: 100%;
   max-width: 800px;
   height: 50px;
