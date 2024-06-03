@@ -141,11 +141,80 @@ This is to set a sidebar for the different chat rooms
   left: 250px;
   padding: 10px;
   border-radius: 5px;
+  pointer-events: none;
+}
+
+.addUserButton:hover{
+  background-color: inherit;
 }
 
 .addUserIcon{
   width: 24px;
   height: 24px;
+  pointer-events: auto;
+}
+
+.contextMenu{
+  position: absolute;
+  background-color: rgb(39, 38, 38);
+  flex-direction: column;
+  color: white;
+  border: solid 1px;
+  border-radius: 5px;
+  z-index: 1000;
+  margin-top: -135px;
+  margin-left: 10px;
+  padding: 10px;
+  width: 150px;
+}
+
+.contextSearch{
+  width: 93%;
+  color: black;
+  padding: 5px;
+  margin-bottom: 12px;
+  border: none;
+  border-radius: 5px;
+}
+
+.contextSearch:focus-visible{
+  outline: none;
+}
+
+.contextList{
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contextItem {
+  padding: 5px;
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.contextItem:hover {
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  transition: 0.2s;
+}
+
+.contextClose {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.contextClose:hover {
+  background-color: gray;
+  transition: 0.2s;
 }
 
 /*
