@@ -72,10 +72,12 @@ This is to set a sidebar for the different chat rooms
   display: flex;
   flex-direction: column;
   align-items: right;
-  position: absolute;
+  position: relative;
+  overflow-x: hidden;
+  z-index: 1000;
   width: 300px;
   border-right: 3px solid rgb(255, 255, 255);
-  height: 727px;
+  height: 688px;
   background-color: rgb(57, 60, 53);
 }
 
@@ -88,7 +90,6 @@ This is to set a sidebar for the different chat rooms
   border-radius: 15px;
   border: none;
   font-size: 15px;
-  /*box-sizing: border-box;*/
   background-color: rgb(37, 39, 34);
   color: white;
 }
@@ -227,8 +228,9 @@ This section styles the chat box
   top: 72px;
   left: 323px;
   border-top: 3px white;
+  z-index: 0;
   display: flex;
-  height: 789px;
+  height: 750px;
   width: 1125px;
   background-color: rgb(57, 60, 53);
 }
@@ -236,8 +238,8 @@ This section styles the chat box
 .inputBox{
   margin: 50px;
   position: absolute;
-  top: 600px;
-  left: 130px;
+  top: 620px;
+  left: 40px;
   display: flex;
   vertical-align: bottom;
   width: 800px;
@@ -281,7 +283,7 @@ This section styles the chat box
 }
 
 .scrollChat{
-  width: 1040px;
+  width: 900px;
   height: 550px;
   display:flex;
   flex-direction: column;
@@ -289,6 +291,7 @@ This section styles the chat box
   overflow-x: hidden;
   overflow-y: auto;
   padding: 20px;
+  top: 30px;
   margin: 20px;
   background-color: rgb(57, 60, 53);
   border-color: azure;
@@ -300,7 +303,7 @@ This section styles the chat box
   flex-wrap: wrap;
   background-color: rgb(37, 39, 34);
   width: fit-content;
-  max-width: 500px;
+  max-width: 900px;
   height: fit-content;
   margin: 10px;
   border-radius: 15px;
@@ -311,8 +314,58 @@ This section styles the chat box
 
 .message{
   overflow-wrap: anywhere;
+  color: rgb(212, 212, 212);
 }
 
+.userList{
+  background-color: inherit;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border-left: solid white 2px;
+  border-right: solid white 2px;
+  border-top: solid white 2px;
+  left: 1000px;
+  padding: 6.5px;
+  top: -2px;
+  width: 130px;
+  max-height: 757px;
+  height: 100%;
+}
+
+.userLine{
+  display: flex;
+  padding-bottom: 10px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.userItem{
+  width: 90px;
+  overflow: hidden;
+  align-items: center;
+  color: white;
+  text-overflow: ellipsis;
+  word-break: normal;
+  padding: 5px;
+  white-space: nowrap;
+  line-height: 15px;
+}
+
+.removeUser{
+  background-color: red;
+  color: white;
+  font-weight: bolder;
+  border-radius: 5px;
+  border: none;
+}
+
+.removeUser:hover{
+  background-color: rgb(117, 0, 0);
+  cursor: pointer;
+}
+
+/* Login and Register Styling*/
 .login-page{
   background-color: rgb(57, 60, 53);
   color: rgb(57, 60, 53);

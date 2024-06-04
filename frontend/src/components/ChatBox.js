@@ -3,11 +3,13 @@ import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import ChatInput from './ChatInput';
 import ChatBubble from './ChatBubble';
+import UserList from './UserList';
 import { socket } from '../socket';
 
 export default function ChatWindow({ chatId }) {
     const [messages, setMessages] = useState([]);
     const chatRef = useRef(null);
+
 
     // fetch messages from database
     useEffect(() => {
@@ -53,6 +55,7 @@ export default function ChatWindow({ chatId }) {
         <div className='chatBox'>
             <ChatBubble messages={messages} chatRef={chatRef} />
             <ChatInput chatId={chatId} />
+            <UserList/>
         </div>
     )
 }

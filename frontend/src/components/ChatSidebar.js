@@ -55,7 +55,7 @@ export default function ChatSidebar() {
     const handleAddUserClick = (event, index) => {
         event.stopPropagation();
         const buttonRef = addButtonRefs.current[index].getBoundingClientRect();
-        setContextMenuPosition({ x: buttonRef.right + window.scrollX, y: buttonRef.top + window.scrollY});
+        setContextMenuPosition({ x: buttonRef.left + window.scrollX - 130, y: buttonRef.top + window.scrollY});
         setContextMenuVisible(true);
     };
 
