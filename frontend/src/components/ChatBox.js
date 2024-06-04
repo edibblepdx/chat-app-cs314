@@ -56,6 +56,12 @@ export default function ChatWindow({ chatId }) {
             <ChatBubble messages={messages} chatRef={chatRef} />
             <ChatInput chatId={chatId} />
             <UserList/>
+            <button className="redButton" style={{top: "650px", left: "1030px"}}>
+                Leave Chat
+            </button>
+            <button className="redButton" style={{top: "700px", left: "1030px"}}>
+                Delete Chat
+            </button>
         </div>
     )
 }

@@ -280,6 +280,13 @@ This section styles the chat box
 
 .sendButton:hover{
   color: gray;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.sendButton:active{
+  background-color: rgb(35, 35, 35);
+  color: rgb(35, 35, 35)
 }
 
 .scrollChat{
@@ -322,15 +329,15 @@ This section styles the chat box
   position: absolute;
   display: flex;
   flex-direction: column;
-  border-left: solid white 2px;
-  border-right: solid white 2px;
-  border-top: solid white 2px;
+  border: white solid 2px;
   left: 1000px;
   padding: 6.5px;
   top: -2px;
   width: 130px;
-  max-height: 757px;
+  max-height: 600px;
   height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .userLine{
@@ -362,6 +369,22 @@ This section styles the chat box
 
 .removeUser:hover{
   background-color: rgb(117, 0, 0);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.redButton{
+  background-color: red;
+  color: white;
+  position: absolute;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+}
+
+.redButton:hover{
+  background-color: rgb(134, 0, 0);
+  transition: 0.2s;
   cursor: pointer;
 }
 
