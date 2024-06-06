@@ -6,10 +6,19 @@ import Cookies from 'js-cookie';
 export default function ChatInput({ chatId }) {
     const [message, setMessage] = useState('');
 
+    // handle input change
     const inputHandler = (e) => {
         setMessage(e.target.value);
     }
 
+    // send when user presses enter
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    }
+
+    // send message
     const sendMessage = async () => {
         try {
             // realtime messages
@@ -25,7 +34,7 @@ export default function ChatInput({ chatId }) {
     const sendButton = () => {
         return (
             <div>
-                <button 
+                <button
                     className="sendButton"
                     onClick={sendMessage}>
                     Send
@@ -41,6 +50,7 @@ export default function ChatInput({ chatId }) {
                 placeholder='Type something...'
                 value={message}
                 onChange={inputHandler}
+                onKeyDown={handleKeyDown}
             />
             {sendButton()}
         </div>

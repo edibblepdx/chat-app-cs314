@@ -4,13 +4,16 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');
-const rabbitMQService = require('./services/rabbitMQService');
+//const rabbitMQService = require('./services/rabbitMQService');
 
 const PORT = process.env.PORT || 8000;	// PORT
 const app = express();					// express app
 
 // middleware
-app.use(cors());
+app.use(cors({
+	origin: 'http://localhost:3000',
+	credentials: true
+}));
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended: false}));
@@ -35,6 +38,7 @@ mongoose.connect(process.env.MONGO_URI)
 		console.log(err)
 	});
 
+/*
 // initialize rabbitMQ client
 const initializeRabbitMQClient = async () => {
 	try {
@@ -46,3 +50,4 @@ const initializeRabbitMQClient = async () => {
 };
 
 initializeRabbitMQClient();
+*/

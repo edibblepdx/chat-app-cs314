@@ -14,6 +14,7 @@ export default function ChatSidebar() {
 
     const [contextMenuVisible, setContextMenuVisible] = useState(false);
     const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 });
+    const [contextMenuChatId, setContextMenuChatId] = useState(null);
     const addButtonRefs = useRef([]);
 
     useEffect(() => {
@@ -29,15 +30,15 @@ export default function ChatSidebar() {
 
         fetchChats();
 
-        // listen for chat created events and update the chats state
-        socket.on('chat created', (chat) => {
+        // listen for private chat added events and update the chats state
+        socket.on('chat added', (chat) => {
             setChats((prevChats) => [...prevChats, chat]);
         });
 
         return () => {
-            socket.off('chat created');
+            socket.off('chat added');
         };
-    }, [user/*, socket*/]);
+    }, [user]);
 
     const handleChatSelection = (chatId) => {
         setSelectedChat(chatId);
@@ -48,6 +49,7 @@ export default function ChatSidebar() {
         const buttonRef = addButtonRefs.current[index].getBoundingClientRect();
         setContextMenuPosition({ x: buttonRef.left + window.scrollX - 130, y: buttonRef.top + window.scrollY});
         setContextMenuVisible(true);
+        setContextMenuChatId(chats[index]._id);
     };
 
     return (
@@ -67,6 +69,7 @@ export default function ChatSidebar() {
                     ))}
                     {contextMenuVisible && (
                         <UserMenu
+                            chatId={contextMenuChatId}
                             position={contextMenuPosition}
                             onClose={() => setContextMenuVisible(false)}
                         />

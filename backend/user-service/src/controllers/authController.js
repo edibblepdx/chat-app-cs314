@@ -158,6 +158,22 @@ const getProfile = async (req, res) => {
     }
 };
 
+// search for users by email
+const searchUsers = async (req, res) => {
+    try {
+        const searchTerm = req.query.q;
+        const regex = new RegExp(searchTerm, 'i');
+
+        const users = await User.find({ email: { $regex: regex } }).limit(5);
+
+        res.json(users);
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'server error' });
+    }
+};
+
 module.exports = {
     getUser
     , registerUser
@@ -166,4 +182,5 @@ module.exports = {
     , googleAuth
     , googleRefresh
     , getProfile
+    , searchUsers
 };

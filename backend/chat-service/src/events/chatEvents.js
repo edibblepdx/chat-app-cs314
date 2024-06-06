@@ -58,7 +58,7 @@ module.exports = (io) => {
                 const id = decoded.id;
 
                 if (!chatName) {
-                    console.error('Chat needs a name');
+                    throw 'Chat needs a name';
                 }
                 const chat = new Chat({
                     name: chatName,
@@ -68,7 +68,30 @@ module.exports = (io) => {
                 })
                 await chat.save();
                 console.log('chat created: ' + chatName);
-                io.to(id).emit('chat created', chat);
+                io.to(id).emit('chat added', chat);
+            }
+            catch (err) {
+                console.error(err);
+            }
+        });
+
+        // add user to chat
+        socket.on('add user', async ({ chatId, userId }) => {
+            try {
+                if (!chatId || !userId) {
+                    throw 'ChatId and userId required';
+                }
+
+                const chat = await Chat.findById(chatId);
+                if (chat.users.includes(userId)) {
+                    console.log('User is already in the chat');
+                    return;
+                }
+                chat.users.push(userId);
+                await chat.save();
+
+                console.log('adding user to chat: ' + userId);
+                io.to(userId).emit('chat added', chat);
             }
             catch (err) {
                 console.error(err);
