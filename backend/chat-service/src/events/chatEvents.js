@@ -13,20 +13,6 @@ module.exports = (io) => {
         socket.join(user.id);
         console.log(`user joined room: ${user.id}`);
 
-        // have the user join a room with their email
-
-        /*
-        socket.on('join_room')
-
-        socket.on('leave_room')
-
-        socket.on('send_message')
-
-        socket.on('receive_message')
-
-        socket.on('typing')
-        */
-
         // Join a room
         socket.on('join room', (roomId) => {
             socket.join(roomId);
@@ -43,7 +29,7 @@ module.exports = (io) => {
                 // find chat
                 const chat = await Chat.findById(roomId);
                 if (!chat) {
-                    console.log('Chat not found');
+                    console.error('Chat not found');
                     return;
                 }
                 // create message
@@ -65,18 +51,29 @@ module.exports = (io) => {
             }
         });
 
-        /*
-        socket.on('chat message', ({msg, chatId}) => {
-            console.log('message: ' + msg);	
-            io.emit('chat message', msg);
+        // create a chat
+        socket.on('create chat', async ({ chatName, token }) => {
             try {
-                const message = Message({message: msg});
-                message.save();
-            } catch (err) {
-                console.log(err.message)	
+                const decoded = jwt.verify(token, jwtSecret);
+                const id = decoded.id;
+
+                if (!chatName) {
+                    console.error('Chat needs a name');
+                }
+                const chat = new Chat({
+                    name: chatName,
+                    users: [id],
+                    admin: id,
+                    messages: []
+                })
+                await chat.save();
+                console.log('chat created: ' + chatName);
+                io.to(id).emit('chat created', chat);
+            }
+            catch (err) {
+                console.error(err);
             }
         });
-        */
 
         socket.on('disconnect', () => {
             console.log(`user disconnected: ${user.name}`);

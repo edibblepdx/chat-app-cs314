@@ -25,6 +25,7 @@ export default function App() {
     if (storedToken) {
       // Reconnect socket with stored auth data
       const data = jwtDecode(storedToken);
+      setUser({data});
       socket.auth = { id: data.id, email: data.email, name: data.name};
       socket.connect();
     }

@@ -1,6 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
 import { socket } from '../socket';
 import Cookies from 'js-cookie';
 
@@ -13,8 +12,6 @@ export default function ChatInput({ chatId }) {
 
     const sendMessage = async () => {
         try {
-            //await axios.post(`/chats/${chatId}/messages`, { message });
-
             // realtime messages
             socket.emit('chat message', { roomId: chatId, msg: message, token: Cookies.get('token') });
             setMessage('');

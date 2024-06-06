@@ -2,10 +2,10 @@ import React from 'react';
 import { useState, useEffect, useContext , useRef} from 'react';
 import axios from 'axios';
 import { UserContext } from '../context/userContext';
-//import io from 'socket.io-client';
 import ChatBox from './ChatBox';
 import addUser from './icons8-add-user-30.png';
 import UserMenu from './UserMenu.js';
+import { socket } from '../socket';
 
 export default function ChatSidebar() {
     const [chats, setChats] = useState([]);
@@ -15,8 +15,6 @@ export default function ChatSidebar() {
     const [contextMenuVisible, setContextMenuVisible] = useState(false);
     const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 });
     const addButtonRefs = useRef([]);
-
-    //const socket = io('http://localhost:8001');
 
     useEffect(() => {
         const fetchChats = async () => {
@@ -28,24 +26,17 @@ export default function ChatSidebar() {
                 console.error(err);
             }
         }
-        /*
-        axios.get('/chats/')
-        .then(({data}) => {
-            setChats(data);
-        })
-        */
+
         fetchChats();
 
         // listen for chat created events and update the chats state
-        /*
         socket.on('chat created', (chat) => {
             setChats((prevChats) => [...prevChats, chat]);
         });
 
         return () => {
-            socket.disconnect();
+            socket.off('chat created');
         };
-        */
     }, [user/*, socket*/]);
 
     const handleChatSelection = (chatId) => {

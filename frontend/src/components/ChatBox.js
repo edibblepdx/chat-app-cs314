@@ -6,10 +6,9 @@ import ChatBubble from './ChatBubble';
 import UserList from './UserList';
 import { socket } from '../socket';
 
-export default function ChatWindow({ chatId }) {
+export default function ChatBox({ chatId }) {
     const [messages, setMessages] = useState([]);
     const chatRef = useRef(null);
-
 
     // fetch messages from database
     useEffect(() => {
@@ -35,7 +34,6 @@ export default function ChatWindow({ chatId }) {
     // realtime messages
     useEffect(() => {
         // join chat room
-        //!socket.connect();
         socket.emit('join room', chatId);
 
         // listen for messages
@@ -46,7 +44,6 @@ export default function ChatWindow({ chatId }) {
 
         return () => {
             socket.off('chat message', handleNewMessage);
-            //!socket.disconnect();
         };
     }, [chatId]);
     

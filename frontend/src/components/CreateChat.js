@@ -1,18 +1,11 @@
 import React from 'react'
-import { useState/*, useEffect*/ } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-//import io from 'socket.io-client';
+import { socket } from '../socket';
+import Cookies from 'js-cookie';
 
-export default function CreateChat() {
+export default function CreateChat({ userId }) {
     const [chat, setChat] = useState('');
-    //const socket = io('http://localhost:8001');
-    /* 
-    useEffect(() => {
-        return () => {
-            socket.disconnect();
-        };
-    }, [socket]);
-    */
 
     const inputHandler = (e) => {
         setChat(e.target.value);
@@ -20,10 +13,10 @@ export default function CreateChat() {
 
     const createChat = async () => {
         try {
-            await axios.post('/chats/', { name: chat });
+            //await axios.post('/chats/', { name: chat });
             
             // emit event to server
-            //socket.emit('create chat', chat);
+            socket.emit('create chat', { chatName: chat, token: Cookies.get('token') });
             setChat('');
         }
         catch (err) {
