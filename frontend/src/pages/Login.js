@@ -4,6 +4,7 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useGoogleLogin } from '@react-oauth/google';
+import { socket } from '../socket';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -14,9 +15,9 @@ export default function Login() {
 
   const loginUser = async (e) => {
     e.preventDefault();
-    const {email, password} = data;
+    const { email, password } = data;
     try {
-      const {data} = await axios.post('/user/login', {
+      const { data } = await axios.post('/user/login', {
         email
         , password
       });
@@ -24,7 +25,19 @@ export default function Login() {
         toast.error(data.error);
       }
       else {
-        setData({});
+        // connect to the socket
+        socket.auth = { id: data._id, email: data.email, name: data.name};
+        socket.connect();
+
+        socket.on('connect', () => {
+          console.log('Socket connected successfully');
+        });
+
+        socket.on('connect_error', (err) => {
+          console.error('Socket connection error:', err);
+        });
+
+        setData({ email: '', password: '' });
         toast.success('login successful');
         navigate('/chats');
       }

@@ -8,7 +8,12 @@ jwtSecret = process.env.JWT_SECRET;
 // socket.io events
 module.exports = (io) => {
     io.on('connection', (socket) => {
-        console.log('a user connected');
+        const user = socket.user;
+        console.log(`a user connected: ${user.name}, ${user.email}, ${user.id}`);
+        socket.join(user.id);
+        console.log(`user joined room: ${user.id}`);
+
+        // have the user join a room with their email
 
         /*
         socket.on('join_room')
@@ -74,7 +79,7 @@ module.exports = (io) => {
         */
 
         socket.on('disconnect', () => {
-            console.log('user disconnected');
+            console.log(`user disconnected: ${user.name}`);
         });
     });
 }

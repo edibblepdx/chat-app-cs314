@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { socket } from "../socket";
 
 export default function LogoutButton() {
     const navigate = useNavigate();
@@ -8,6 +9,8 @@ export default function LogoutButton() {
     const logoutUser = async () => {
         try {
             await axios.post("/user/logout");
+            // disconnect the socket
+            socket.disconnect();
             navigate("/user/login");
         } catch (err) {
             console.log(err);

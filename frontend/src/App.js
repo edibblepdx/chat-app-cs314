@@ -9,15 +9,26 @@ import Register from './pages/Register';
 import axios from 'axios';
 import { Toaster } from 'react-hot-toast';
 import { socket } from './socket';
+import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode';
 
 axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
 
 export default function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
-  // event
+  const [user, setUser] = useState(null);
   
   useEffect(() => {
+    // check if user is already logged in
+    const storedToken = Cookies.get('token');
+    if (storedToken) {
+      // Reconnect socket with stored auth data
+      const data = jwtDecode(storedToken);
+      socket.auth = { id: data.id, email: data.email, name: data.name};
+      socket.connect();
+    }
+
     function onConnect() {
       setIsConnected(true);
     }

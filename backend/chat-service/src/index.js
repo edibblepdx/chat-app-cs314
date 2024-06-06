@@ -8,18 +8,21 @@ const cookieParser = require('cookie-parser');
 const chatRoutes = require('./routes/chatRoutes');
 const events = require('./events/chatEvents');
 
+const jwtSecret = process.env.JWT_SECRET;
 const PORT = process.env.PORT || 8000;	// PORT
 const app = express();					// express app
 const server = createServer(app);		// express server
 const io = new Server(server, {
 	cors: {
 		origin: 'http://localhost:3000',
+    credentials: true
 	}
 });			// socket.io
 
 // middleware
 app.use(cors({
 	origin: 'http://localhost:3000',
+  credentials: true
 }));
 app.use(express.json());
 app.use(cookieParser());
@@ -61,6 +64,43 @@ io.engine.use((req, res, next) => {
 });
 */
 
+
+
+// auth middleware
+io.use((socket, next) => {
+  const { id, email, name } = socket.handshake.auth;
+  if (!id) {
+    return next(new Error('invalid id'));
+  }
+  if (!email) {
+    return next(new Error('invalid email'));
+  }
+  if (!name) {
+    return next(new Error('invalid name'));
+  }
+  // set user
+  socket.user = {id, email, name};
+  next();
+});
+
+/*
+io.use((socket, next) => {
+  const cookies = cookieParser.JSONCookies(socket.handshake.headers.cookie || '');
+  const token = cookies.token;
+
+  if (token) {
+    try {
+      const decoded = jwt.verify(token, jwtSecret);
+      socket.user = decoded.user;
+    }
+    catch (err) {
+      console.error(err);
+    }
+  }
+
+  next();
+});
+*/
 // socket.io events
 events(io);
 
