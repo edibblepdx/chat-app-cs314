@@ -125,6 +125,7 @@ module.exports = (io) => {
 
                 // check if the user is the admin (cannot use ===)
                 if (chat.admin == user.id) {
+                    io.to(user.id).emit('fail', { msg: "Admin cannot leave chat" });
                     throw 'Admin cannot leave chat';
                 }
 
@@ -158,6 +159,7 @@ module.exports = (io) => {
 
                 // check if the user is the admin (cannot use ===)
                 if (chat.admin != user.id) {
+                    io.to(user.id).emit('fail', { msg: "Only the admin can delete the chat" });
                     throw 'Only the admin can delete the chat';
                 }
 
@@ -190,6 +192,7 @@ module.exports = (io) => {
 
                 // check if the user is the admin (cannot use ===)
                 if (chat.admin != user.id) {
+                    io.to(user.id).emit('fail', { msg: "Only the admin can remove users" });
                     throw 'Only the admin can remove users';
                 }
 

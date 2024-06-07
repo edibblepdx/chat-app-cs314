@@ -7,6 +7,7 @@ import addUser from './icons8-add-user-30.png';
 import UserMenu from './UserMenu.js';
 import UserList from './UserList';
 import { socket } from '../socket';
+import { toast } from 'react-hot-toast';
 
 export default function ChatSidebar() {
     const [chats, setChats] = useState([]);
@@ -37,11 +38,13 @@ export default function ChatSidebar() {
     useEffect(() => {
         // listen for private chat added events and update the chats state
         socket.on('chat added', (chat) => {
+            toast.success('new chat');
             setChats((prevChats) => [...prevChats, chat]);
         });
 
         // listen for private chat removed events and update the chats state
         socket.on('chat removed', (chat) => {
+            toast.error('chat removed');
             setChats((prevChats) => prevChats.filter((c) => c._id !== chat._id));
             setSelectedChat(null);
         });

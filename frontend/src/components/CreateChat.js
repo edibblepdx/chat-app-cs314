@@ -25,7 +25,9 @@ export default function CreateChat({ userId }) {
     }
     return (
         <div style={{
-            backgroundColor: "rgb(57, 60, 53)",
+            //backgroundColor: "rgb(57, 60, 53)",
+            backgroundColor: "rgb(44, 46, 42)",
+            borderRight: "3px solid rgb(255, 255, 255)",
             width: "320px",
             maxHeight: "90px"
             }}>

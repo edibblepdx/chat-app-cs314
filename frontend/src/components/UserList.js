@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios";
 import { socket } from "../socket";
+import { toast } from 'react-hot-toast';
 
 export default function UserList({ chatId }){
     const [users, setUsers] = useState([]);
@@ -29,18 +30,24 @@ export default function UserList({ chatId }){
             setUsers((prevUsers) => prevUsers.filter((u) => u._id != id));
         }
 
-        socket.on('user removed', handleUserRemoved);
 
         const handleUserAdded = async ({userId}) => {
             const { data } = await axios.get('/user/' + userId);
             setUsers((prevUsers) => [...prevUsers, data]);
         }
 
+        const handleFail = ({msg}) => {
+            toast.error(msg);
+        }
+
+        socket.on('user removed', handleUserRemoved);
         socket.on('user added', handleUserAdded);
+        socket.on('fail', handleFail);
 
         return () => {
             socket.off('user removed');
             socket.off('user added');
+            socket.off('fail');
         }
     }, [chatId]);
 
