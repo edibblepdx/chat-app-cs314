@@ -5,6 +5,7 @@ import { UserContext } from '../context/userContext';
 import ChatBox from './ChatBox';
 import addUser from './icons8-add-user-30.png';
 import UserMenu from './UserMenu.js';
+import UserList from './UserList';
 import { socket } from '../socket';
 
 export default function ChatSidebar() {
@@ -17,6 +18,7 @@ export default function ChatSidebar() {
     const [contextMenuChatId, setContextMenuChatId] = useState(null);
     const addButtonRefs = useRef([]);
 
+    // fetch chats
     useEffect(() => {
         const fetchChats = async () => {
             try {
@@ -29,7 +31,10 @@ export default function ChatSidebar() {
         }
 
         fetchChats();
+    }, [user]);
 
+    // socket stuff
+    useEffect(() => {
         // listen for private chat added events and update the chats state
         socket.on('chat added', (chat) => {
             setChats((prevChats) => [...prevChats, chat]);
@@ -48,7 +53,13 @@ export default function ChatSidebar() {
     }, [user]);
 
     const handleChatSelection = (chatId) => {
+        // leave chat room
+        socket.emit('leave room', selectedChat);
+        // set selected chat
         setSelectedChat(chatId);
+        // join chat room
+        socket.emit('join room', chatId);
+
     };
 
     const handleAddUserClick = (event, index) => {
@@ -90,6 +101,7 @@ export default function ChatSidebar() {
                         <p>Select a chat to view the messages</p>
                     </div>
                 )}
+                <UserList chatId={selectedChat} />
             </div>
         </div>
     )

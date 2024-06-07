@@ -15,8 +15,20 @@ module.exports = (io) => {
 
         // Join a room
         socket.on('join room', (roomId) => {
+            if (socket.rooms.has(roomId)) {
+                return;
+            }
             socket.join(roomId);
             console.log(`User joined room: ${roomId}`);
+        });
+
+        // Leave a room
+        socket.on('leave room', (roomId) => {
+            if (!roomId) {
+                return;
+            }
+            socket.leave(roomId);
+            console.log(`User left room: ${roomId}`);
         });
 
         // Handle chat message

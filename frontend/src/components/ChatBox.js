@@ -1,9 +1,8 @@
 import React from 'react';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import ChatInput from './ChatInput';
 import ChatBubble from './ChatBubble';
-import UserList from './UserList';
 import LeaveChatButton from './LeaveChatButton';
 import DeleteChatButton from './DeleteChatButton';
 import { socket } from '../socket';
@@ -35,9 +34,6 @@ export default function ChatBox({ chatId }) {
  
     // realtime messages
     useEffect(() => {
-        // join chat room
-        socket.emit('join room', chatId);
-
         // listen for messages
         const handleNewMessage = (message) => {
             setMessages((prevMessages) => [...prevMessages, message]);
@@ -48,13 +44,11 @@ export default function ChatBox({ chatId }) {
             socket.off('chat message', handleNewMessage);
         };
     }, [chatId]);
-    
 
     return (
         <div className='chatBox'>
             <ChatBubble messages={messages} chatRef={chatRef} />
             <ChatInput chatId={chatId} />
-            <UserList chatId={chatId} />
             <LeaveChatButton chatId={chatId} />
             <DeleteChatButton chatId={chatId} />
         </div>

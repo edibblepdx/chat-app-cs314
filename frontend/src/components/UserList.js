@@ -6,6 +6,7 @@ export default function UserList({ chatId }){
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
+        if (!chatId) return;
         const fetchUsers = async () => {
             try {
                 setUsers([]);
@@ -24,14 +25,18 @@ export default function UserList({ chatId }){
 
     // socket stuff
     useEffect(() => {
-        socket.on('user removed', ({id}) => {
+        const handleUserRemoved = ({id}) => {
             setUsers((prevUsers) => prevUsers.filter((u) => u._id != id));
-        });
+        }
 
-        socket.on('user added', async ({userId}) => {
+        socket.on('user removed', handleUserRemoved);
+
+        const handleUserAdded = async ({userId}) => {
             const { data } = await axios.get('/user/' + userId);
             setUsers((prevUsers) => [...prevUsers, data]);
-        });
+        }
+
+        socket.on('user added', handleUserAdded);
 
         return () => {
             socket.off('user removed');
@@ -40,12 +45,11 @@ export default function UserList({ chatId }){
     }, [chatId]);
 
     const removeUserFromChat = (item) => {
-        console.log(item);
         socket.emit('remove user', { chatId: chatId, userId: item._id });
     }
 
     return (
-        <div className="userList">
+        <div className="userList" style={{left: "1323px", top: "70px"}}>
             <h1 style={{height: "40px", width: "90px"}}>Users</h1>
             <div className="userLine">
                 {users.map((item) => (
