@@ -45,6 +45,7 @@ export default function ChatSidebar() {
         // listen for private chat removed events and update the chats state
         socket.on('chat removed', (chat) => {
             toast.error('chat removed');
+            socket.emit('leave room', chat._id);
             setChats((prevChats) => prevChats.filter((c) => c._id !== chat._id));
             setSelectedChat(null);
         });
