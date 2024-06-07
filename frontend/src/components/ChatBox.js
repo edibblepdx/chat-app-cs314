@@ -4,6 +4,7 @@ import axios from 'axios';
 import ChatInput from './ChatInput';
 import ChatBubble from './ChatBubble';
 import UserList from './UserList';
+import LeaveChatButton from './LeaveChatButton';
 import { socket } from '../socket';
 
 export default function ChatBox({ chatId }) {
@@ -53,9 +54,7 @@ export default function ChatBox({ chatId }) {
             <ChatBubble messages={messages} chatRef={chatRef} />
             <ChatInput chatId={chatId} />
             <UserList/>
-            <button className="redButton" style={{top: "650px", left: "1030px"}}>
-                Leave Chat
-            </button>
+            <LeaveChatButton chatId={chatId} />
             <button className="redButton" style={{top: "700px", left: "1030px"}}>
                 Delete Chat
             </button>

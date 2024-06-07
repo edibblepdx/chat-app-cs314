@@ -35,8 +35,15 @@ export default function ChatSidebar() {
             setChats((prevChats) => [...prevChats, chat]);
         });
 
+        // listen for private chat removed events and update the chats state
+        socket.on('chat removed', (chat) => {
+            setChats((prevChats) => prevChats.filter((c) => c._id !== chat._id));
+            setSelectedChat(null);
+        });
+
         return () => {
             socket.off('chat added');
+            socket.off('chat removed');
         };
     }, [user]);
 

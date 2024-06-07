@@ -98,6 +98,39 @@ module.exports = (io) => {
             }
         });
 
+        // leave chat
+        socket.on("leave chat", async (roomId) => {
+            try {
+                if (!roomId) {
+                    throw 'roomId required';
+                }
+
+                const chat = await Chat.findById(roomId);
+                if (!chat) {
+                    throw 'Chat not found';
+                }
+
+                // check if the user is the admin (cannot use ===)
+                if (chat.admin == user.id) {
+                    throw 'Admin cannot leave chat';
+                }
+
+                const userIndex = chat.users.indexOf(user.id);  
+                if (userIndex === -1) {
+                    throw 'User not found in chat';
+                }
+                chat.users.splice(userIndex, 1);
+                await chat.save();
+
+                console.log('removing user:' + user.id + 'from chat: ' + roomId);
+                socket.leave(roomId);
+                io.to(user.id).emit('chat removed', chat);
+            }
+            catch (err) {
+                console.error(err);
+            }
+        });
+
         socket.on('disconnect', () => {
             console.log(`user disconnected: ${user.name}`);
         });
