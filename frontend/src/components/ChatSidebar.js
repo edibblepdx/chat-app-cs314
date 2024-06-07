@@ -101,8 +101,9 @@ export default function ChatSidebar() {
             <div style={{ float: 'right', width: '70%' }}>
                 {selectedChat ? (<ChatBox chatId={selectedChat} />
                 ) : (
-                    <div className='chatBox'>
-                        <p>Select a chat to view the messages</p>
+                    <div className="chatBox" style={{flexDirection: "column"}}>
+                        <h1>&lArr; Create a Chat!</h1>
+                        <h1 style={{paddingTop: "65px"}}> &lArr; Select a chat to view the messages!</h1>
                     </div>
                 )}
                 <UserList chatId={selectedChat} />
