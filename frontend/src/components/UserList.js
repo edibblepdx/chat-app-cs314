@@ -8,6 +8,7 @@ export default function UserList({ chatId }){
     useEffect(() => {
         const fetchUsers = async () => {
             try {
+                setUsers([]);
                 const { data } = await axios.get('/chats/' + chatId + '/users');
                 data.forEach(async (userId) => {
                     const { data } = await axios.get('/user/' + userId);
@@ -18,7 +19,6 @@ export default function UserList({ chatId }){
                 console.error(err);
             }
         }
-        setUsers([]);
         fetchUsers();
     }, [chatId]);
 
