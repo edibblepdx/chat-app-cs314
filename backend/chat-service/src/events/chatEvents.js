@@ -92,6 +92,7 @@ module.exports = (io) => {
 
                 console.log('adding user to chat: ' + userId);
                 io.to(userId).emit('chat added', chat);
+                io.to(chatId).emit('user added', { userId: userId });
             }
             catch (err) {
                 console.error(err);
@@ -156,6 +157,46 @@ module.exports = (io) => {
                 await Chat.deleteOne({ _id: chatId });
 
                 console.log('deleting chat: ' + chatId);
+            }
+            catch (err) {
+                console.error(err);
+            }
+        });
+
+        // remove user from chat forcibly
+        socket.on('remove user', async ({ chatId, userId }) => {
+            try {
+                if (!chatId || !userId) {
+                    console.log(chatId, userId);
+                    throw 'ChatId and userId required';
+                }
+
+                const chat = await Chat.findById(chatId);
+                if (!chat) {
+                    throw 'Chat not found';
+                }
+
+                // check if the user is the admin (cannot use ===)
+                if (chat.admin != user.id) {
+                    throw 'Only the admin can remove users';
+                }
+
+                // check if the admin is trying to remove themselves
+                if (chat.admin == userId) {
+                    throw 'The admin cannot remove themselves';
+                }
+
+                // remove user
+                const userIndex = chat.users.indexOf(userId);  
+                if (userIndex === -1) {
+                    throw 'User not found in chat';
+                }
+                chat.users.splice(userIndex, 1);
+                await chat.save();
+
+                console.log('removing user:' + userId + 'from chat: ' + chatId);
+                io.to(chatId).emit('user removed', { id: userId });
+                io.to(userId).emit('chat removed', chat);
             }
             catch (err) {
                 console.error(err);

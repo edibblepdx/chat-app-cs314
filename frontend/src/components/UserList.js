@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios";
+import { socket } from "../socket";
 
 export default function UserList({ chatId }){
     const [users, setUsers] = useState([]);
 
-    //const test = [{id: 1, name: "user 11111111111111111111"},{id: 2, name: "user 2"},{id: 3, name: "user 3"}];
     useEffect(() => {
         const fetchUsers = async () => {
-            setUsers([]);
             try {
                 const { data } = await axios.get('/chats/' + chatId + '/users');
                 data.forEach(async (userId) => {
@@ -19,20 +18,41 @@ export default function UserList({ chatId }){
                 console.error(err);
             }
         }
+        setUsers([]);
         fetchUsers();
     }, [chatId]);
+
+    // socket stuff
+    useEffect(() => {
+        socket.on('user removed', ({id}) => {
+            setUsers((prevUsers) => prevUsers.filter((u) => u._id != id));
+        });
+
+        socket.on('user added', async ({userId}) => {
+            const { data } = await axios.get('/user/' + userId);
+            setUsers((prevUsers) => [...prevUsers, data]);
+        });
+
+        return () => {
+            socket.off('user removed');
+            socket.off('user added');
+        }
+    }, [chatId]);
+
+    const removeUserFromChat = (item) => {
+        console.log(item);
+        socket.emit('remove user', { chatId: chatId, userId: item._id });
+    }
 
     return (
         <div className="userList">
             <h1 style={{height: "40px", width: "90px"}}>Users</h1>
             <div className="userLine">
                 {users.map((item) => (
-                    <>
-                    <div key={item.id} className="userItem" style={{display: "flex", width: "80px",justifyContent: "space-between"}}>
+                    <div key={item._id} className="userItem" style={{display: "flex", width: "80px",justifyContent: "space-between"}}>
                         {item.name}
+                        <button className="removeUser" onClick={() => removeUserFromChat(item)}>X</button>
                     </div>
-                    <button className="removeUser">X</button>
-                    </>
                 ))}
             </div>
         </div>

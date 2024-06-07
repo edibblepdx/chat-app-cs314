@@ -56,7 +56,7 @@ export default function UserMenu ({chatId, position, onClose}) {
             />
             <div className="contextList">
                 {filteredUsers.map((user) => (
-                    <div key={user.id} className="contextItem" onClick={() => handleClick(user)}>
+                    <div key={user._id} className="contextItem" onClick={() => handleClick(user)}>
                         {user.email}
                     </div>
             ))}
