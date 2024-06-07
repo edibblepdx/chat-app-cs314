@@ -99,13 +99,13 @@ module.exports = (io) => {
         });
 
         // leave chat
-        socket.on("leave chat", async (roomId) => {
+        socket.on("leave chat", async (chatId) => {
             try {
-                if (!roomId) {
+                if (!chatId) {
                     throw 'roomId required';
                 }
 
-                const chat = await Chat.findById(roomId);
+                const chat = await Chat.findById(chatId);
                 if (!chat) {
                     throw 'Chat not found';
                 }
@@ -122,9 +122,40 @@ module.exports = (io) => {
                 chat.users.splice(userIndex, 1);
                 await chat.save();
 
-                console.log('removing user:' + user.id + 'from chat: ' + roomId);
-                socket.leave(roomId);
+                console.log('removing user:' + user.id + 'from chat: ' + chatId);
+                socket.leave(chatId);
                 io.to(user.id).emit('chat removed', chat);
+            }
+            catch (err) {
+                console.error(err);
+            }
+        });
+
+        // delete chat
+        socket.on('delete chat', async (chatId) => {
+            try {
+                if (!chatId) {
+                    throw 'roomId required';
+                }
+
+                const chat = await Chat.findById(chatId);
+                if (!chat) {
+                    throw 'Chat not found';
+                }
+
+                // check if the user is the admin (cannot use ===)
+                if (chat.admin != user.id) {
+                    throw 'Only the admin can delete the chat';
+                }
+
+                // remove the chat from all user's sidebar
+                socket.leave(chatId);
+                chat.users.forEach(userId => {
+                    io.to(userId.toString()).emit('chat removed', chat);
+                });
+                await Chat.deleteOne({ _id: chatId });
+
+                console.log('deleting chat: ' + chatId);
             }
             catch (err) {
                 console.error(err);

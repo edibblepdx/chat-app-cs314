@@ -5,6 +5,7 @@ import ChatInput from './ChatInput';
 import ChatBubble from './ChatBubble';
 import UserList from './UserList';
 import LeaveChatButton from './LeaveChatButton';
+import DeleteChatButton from './DeleteChatButton';
 import { socket } from '../socket';
 
 export default function ChatBox({ chatId }) {
@@ -55,9 +56,7 @@ export default function ChatBox({ chatId }) {
             <ChatInput chatId={chatId} />
             <UserList/>
             <LeaveChatButton chatId={chatId} />
-            <button className="redButton" style={{top: "700px", left: "1030px"}}>
-                Delete Chat
-            </button>
+            <DeleteChatButton chatId={chatId} />
         </div>
     )
 }
