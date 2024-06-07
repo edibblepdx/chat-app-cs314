@@ -7,7 +7,11 @@ export default function UserList({ chatId }){
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        if (!chatId) return;
+        if (!chatId) {
+            setUsers([]);
+            return;
+        }
+
         const fetchUsers = async () => {
             try {
                 setUsers([]);
@@ -27,11 +31,12 @@ export default function UserList({ chatId }){
     // socket stuff
     useEffect(() => {
         const handleUserRemoved = ({id}) => {
+            if (chatId === undefined) return;
             setUsers((prevUsers) => prevUsers.filter((u) => u._id != id));
         }
 
-
         const handleUserAdded = async ({userId}) => {
+            if (chatId === undefined) return;
             const { data } = await axios.get('/user/' + userId);
             setUsers((prevUsers) => [...prevUsers, data]);
         }
