@@ -54,7 +54,7 @@ export default function ChatBox({ chatId }) {
         <div className='chatBox'>
             <ChatBubble messages={messages} chatRef={chatRef} />
             <ChatInput chatId={chatId} />
-            <UserList/>
+            <UserList chatId={chatId} />
             <LeaveChatButton chatId={chatId} />
             <DeleteChatButton chatId={chatId} />
         </div>

@@ -20,11 +20,11 @@ const oAuth2Client = new OAuth2Client(
 	, process.env.REDIRECT_URL
 );
 
-// get a user by email
+// get a user by id -- KEEP THIS LAST IN THE ROUTER!
 const getUser = async (req, res) => {
     try {
-        const {email} = req.params;
-        const user = await User.findOne({ email: email });
+        const { userId } = req.params;
+        const user = await User.findOne({ _id: userId });
         if (!user) {
             return res.status(404).json({ error: 'user not found' });
         }
@@ -93,7 +93,7 @@ const loginUser = async (req, res) => {
         // check if passwords match
         const match = await comparePassword(password, user.password);
         if (match) {
-            jwt.sign({email: user.email, id: user._id, name: user.name}, jwtSecret, {}, (err, token) => {
+            jwt.sign({email: user.email, id: user._id, name: user.name}, jwtSecret, cookieOptions, (err, token) => {
                 if (err) throw err;
                 return res.cookie('token', token).json(user);
             });
