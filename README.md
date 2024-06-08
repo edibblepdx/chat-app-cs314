@@ -1,4 +1,18 @@
 # Chat-App-cs314
+[outline](https://www.drupal.org/docs/develop/managing-a-drupalorg-theme-module-or-distribution-project/documenting-your-project/readmemd-template)
+
+### Requirements
+
+### Installation
+
+### Configuration
+
+### Structure
+
+### Testing
+
+
+
 
 ### JavaScript resource
 [short javascript intro "learn x in y minutes"](https://learnxinyminutes.com/docs/javascript/) <br>
