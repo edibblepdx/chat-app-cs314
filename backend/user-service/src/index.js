@@ -6,12 +6,13 @@ const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');
 //const rabbitMQService = require('./services/rabbitMQService');
 
+const url = BASE_URL || 'http://localhost';
 const PORT = process.env.PORT || 8000;	// PORT
 const app = express();					// express app
 
 // middleware
 app.use(cors({
-	origin: 'http://localhost:3000',
+	origin: `${url}:3000`,
 	credentials: true
 }));
 app.use(express.json());
