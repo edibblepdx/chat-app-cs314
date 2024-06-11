@@ -9,9 +9,9 @@ It supports real time communication between multple users to fulfill all user's 
 There are a number of features that this chat application supports: <br />
     -Real time Communication<br /> 
     -Authentication<br />
-    -Registratio<br />n
+    -Registration<br />
     -Creating Group Chats<br />
-    -Adding Users to your group cha<br />t
+    -Adding Users to your group chat<br />
     -Deleting Group Chat<br />
     -Leaving Group Chat<br />
 <br />
