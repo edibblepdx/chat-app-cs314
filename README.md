@@ -6,15 +6,15 @@ Deployment Link:
 ### Description
 This chat app is able to give users a responsive, effective, and overall great experience.
 It supports real time communication between multple users to fulfill all user's needs.
-There are a number of features that this chat application supports:
-    -Real time Communication
-    -Authentication
-    -Registration
-    -Creating Group Chats
-    -Adding Users to your group chat
-    -Deleting Group Chat
-    -Leaving Group Chat
-
+There are a number of features that this chat application supports: <br />
+    -Real time Communication<br /> 
+    -Authentication<br />
+    -Registratio<br />n
+    -Creating Group Chats<br />
+    -Adding Users to your group cha<br />t
+    -Deleting Group Chat<br />
+    -Leaving Group Chat<br />
+<br />
 Creating the User Interface took inspiration from various popular application but a simple
 design overall goes a long way.
 
