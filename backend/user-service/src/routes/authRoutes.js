@@ -11,10 +11,12 @@ const { getUser
         , searchUsers
 } = require ('../controllers/authController');
 
+const FrontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+
 // middleware
 router.use(cors({
     credentials: true, 
-    origin: 'http://localhost:3000' // react
+    origin: FrontendUrl // react
 }));
 
 router.post('/register', registerUser);                                 // POST register a new user

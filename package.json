@@ -1,0 +1,19 @@
+{
+  "name": "chat-app-cs314",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "workspaces": [
+    "frontend",
+    "backend/gateway",
+    "backend/chat-service",
+    "backend/user-service"
+  ],
+  "scripts": {
+    "start": "npm run start --workspaces",
+    "build": "npm run build --workspaces",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ethan Dibble & Andres Gutierrez Bravo",
+  "license": "ISC"
+}

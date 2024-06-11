@@ -13,10 +13,12 @@ const { getAvailableChats
         , getUsers
  } = require ('../controllers/chatController');
 
+const FrontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+
 // middleware
 router.use(cors({
     credentials: true,
-    origin: 'http://localhost:3000' // React app
+    origin: FrontendUrl // React app
 }));
 
 router.get('/', authenticateToken, getAvailableChats);                  // GET get all available chats for a user

@@ -8,20 +8,22 @@ const cookieParser = require('cookie-parser');
 const chatRoutes = require('./routes/chatRoutes');
 const events = require('./events/chatEvents');
 
+const url = BASE_URL || 'http://localhost';
+const FrontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
 const jwtSecret = process.env.JWT_SECRET;
 const PORT = process.env.PORT || 8000;	// PORT
 const app = express();					// express app
 const server = createServer(app);		// express server
 const io = new Server(server, {
 	cors: {
-		origin: 'http://localhost:3000',
+		origin: FrontendUrl,
     credentials: true
 	}
 });			// socket.io
 
 // middleware
 app.use(cors({
-	origin: 'http://localhost:3000',
+	FrontendUrl,
   credentials: true
 }));
 app.use(express.json());
