@@ -1,8 +1,6 @@
 # Chat App
 By Andres Gutierrez Bravo & Ethan Dibble
 
-Deployment Link: 
-
 ### Description
 This chat app is able to give users a responsive, effective, and overall great experience.
 It supports real time communication between multple users to fulfill all user's needs.
@@ -41,6 +39,8 @@ administration purposes, and of course the name of the chat. For each message th
 has a unique id, an id for the user that sent it, the user's name, the message itself, and a
 time stamp of when it was created. These models are essential to create a satisfactory chatting
 experience.
+
+### Setting up
 
 ### Testing
 To test our application we decided that testing with interactions and user stories was going to be 
