@@ -68,9 +68,9 @@ Each of these services are designed to be independently deployable. This offers 
 ensuring that one service does not bog the other down nor run above necessary capacity.
 
 ### Testing
-To test our application we decided that testing with interactions and user stories was going to be 
-sufficient to know that our app works as intended. Here is an example user story that we used to
-test our application as a system:
+To test our application we decided that testing with interactions and user stories for system tests
+was going to be sufficient to know that our app works as intended. Here is an example user story that 
+we used to test our application as a system:
 
 Kyle, age 34, is a High school teacher at Aloha High School and is relatively new to the district. 
 Kyle likes to do things his way while still trying to be efficient to match the norms. He structures 
