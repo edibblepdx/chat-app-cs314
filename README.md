@@ -11,16 +11,18 @@ send Ctrl+C to stop all services <br />
 ### Description
 This chat app is able to give users a responsive, effective, and overall great experience.
 It supports real time communication between multple users to fulfill all user's needs.
-There are a number of features that this chat application supports: <br />
-    -Real time Communication<br /> 
-    -Authentication<br />
-    -Registration<br />
-    -Creating Group Chats<br />
-    -Adding Users to your group chat<br />
-    -Deleting Group Chat<br />
-    -Leaving Group Chat<br />
+There are a number of features that this chat application supports: <br /> 
 <br />
-Creating the User Interface took inspiration from various popular application but a simple
+    -Real time Communication <br /> 
+    -Authentication <br />
+    -Registration <br />
+    -Data Encryption <br />
+    -Creating Group Chats <br />
+    -Adding Users to your group chat <br />
+    -Deleting Group Chat <br />
+    -Leaving Group Chat <br />
+<br />
+Creating the User Interface took inspiration from various popular applications but a simple
 design overall goes a long way.
 
 ### Implementation
