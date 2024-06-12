@@ -36,26 +36,36 @@ fluid and interactive UI with its UseEffect, and UseState function to give fast 
 on Real time change to the application. Since our goal was to make our chat app as fast as 
 possible, using real time communication with Socket.io and React allowed us to create such features.
 The app contains four different pages: home, chats, Register, and Login. The Home page introduces
-our chat app as it is the default page. The Register Page allows the user to register into the
+our chat app as the default page. The Register Page allows the user to register into the
 system by entering a name, email, and password. After successfully registering, the login page
 will let the user enter their email and password to start using our chat app. When login is
 successful, the user will be directed to the chat page where they are able to create chats and
-start using the app to its full potential.
+start using the app to its full potential. We also support toast notifications that let the user
+know of invalid and successful inputs or admin restricted features.
 
 The Backend was implemented by splitting it into two microservices: a user service and a chat
-service. Each service maintains it's own MongoDB database and uses direct communication to get 
-the data that it needs. The User Service handles user authentication. Each user is stored into 
-the MongoDB database with an associated name, hashed password, and email. Emails are unique,
-but names may overlap, passwords are salted, so two users with the same password store a different
-value. Each user has a unique Id which allows the app to distiguish between each user and allow a 
-safe method of authentication. The Chat Service has two collections in its database. One is for 
-chats and the other messages. Each Chat has its own id that is assigned when it gets created; 
-It also stores the id of all messages were sent in that chat, the id of all users, the id of the 
-user that created it for administration purposes, and of course the name of the chat. For each 
-message that is created, it has a unique id, an id for the user that sent it, the user's name, 
-the message itself, and a time stamp of when it was created. These models are essential to create 
-a satisfactory chatting experience. The chat service also manages the websocket connections and
-the chat events. Each of these services are independently deployable.
+service. This approach optimizes scalabiulity. Each service maintains it's own MongoDB database 
+and uses direct communication to get the data that it needs. 
+
+The User Service handles user authentication. Each user is stored into the MongoDB database with 
+an associated name, hashed password, and email. Emails are unique,but names may overlap, passwords 
+are salted, so two users with the same password store a different value. Each user has a unique Id 
+which allows the app to distiguish between each user and allow a safe method of authentication. 
+When a user registers it will validate input and password length then redirect to login. After 
+logging in, the service returns a jason-web-token as a cookie which is used to track the user
+and authenticate them.
+
+The Chat Service provide real-time chat functionality using Socket.io to manage chat events and
+move users between rooms. It has two collections in its database: one is for chats and the other 
+messages. Each Chat has its own id that is assigned when it gets created; It also stores the id 
+of all messages were sent in that chat, the id of all users, the id of the user that created it 
+for administration purposes, and of course the name of the chat. For each message that is created, 
+it has a unique id, an id for the user that sent it, the user's name, the message itself, and a 
+time stamp of when it was created. These models providea satisfactory real-time chatting experience 
+with admin controls. 
+
+Each of these services are designed to be independently deployable. This offers robust scalability
+ensuring that one service does not bog the other down nor run above necessary capacity.
 
 ### Testing
 To test our application we decided that testing with interactions and user stories was going to be 
