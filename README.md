@@ -34,7 +34,7 @@ design overall goes a long way.
 The frontend of our chat app revolved around React. With React we were able to create a more
 fluid and interactive UI with its UseEffect, and UseState function to give fast updates based
 on Real time change to the application. Since our goal was to make our chat app as fast as 
-possible, using real time communication with Socket and React allowed us to create such features.
+possible, using real time communication with Socket.io and React allowed us to create such features.
 The app contains four different pages: home, chats, Register, and Login. The Home page introduces
 our chat app as it is the default page. The Register Page allows the user to register into the
 system by entering a name, email, and password. After successfully registering, the login page
@@ -42,17 +42,19 @@ will let the user enter their email and password to start using our chat app. Wh
 successful, the user will be directed to the chat page where they are able to create chats and
 start using the app to its full potential.
 
-The Backend was implemented by splitting it into two microservices. The first one is the User
-microservice to allow each user to have a unique ID. Each user is stored into the MongoDB database
-that associates a user with a name, and a hashed password, and email. As stated before, each user
-has a unique Id which allows the app to distiguish between each user and allow a safe method
-of authentication. The second microservice is the Chat micro service which has an additional split
-between chats and messages. Each Chat has its own id that is assigned when it gets creating; It also
-keeps track of how many messages were sent in that chat, id of the user that created it for 
-administration purposes, and of course the name of the chat. For each message that is created, it 
-has a unique id, an id for the user that sent it, the user's name, the message itself, and a
-time stamp of when it was created. These models are essential to create a satisfactory chatting
-experience.
+The Backend was implemented by splitting it into two microservices: a user service and a chat
+service. Each service maintains it's own MongoDB database and uses direct communication to get 
+the data that it needs. The User Service handles user authentication. Each user is stored into 
+the MongoDB database with an associated name, hashed password, and email. Emails are unique,
+but names may overlap, passwords are salted, so two users with the same password store a different
+value. Each user has a unique Id which allows the app to distiguish between each user and allow a 
+safe method of authentication. The Chat Service has two collections in its database. One is for 
+chats and the other messages. Each Chat has its own id that is assigned when it gets created; 
+It also stores the id of all messages were sent in that chat, the id of all users, the id of the 
+user that created it for administration purposes, and of course the name of the chat. For each 
+message that is created, it has a unique id, an id for the user that sent it, the user's name, 
+the message itself, and a time stamp of when it was created. These models are essential to create 
+a satisfactory chatting experience. Each of these services are independently deployable.
 
 ### Testing
 To test our application we decided that testing with interactions and user stories was going to be 
