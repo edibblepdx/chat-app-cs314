@@ -4,8 +4,13 @@ By Andres Gutierrez Bravo & Ethan Dibble
 ![image](https://private-user-images.githubusercontent.com/146913704/338780370-2f54b1a6-b0dc-496e-b2ce-97786df525fd.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTgxNTE1MDQsIm5iZiI6MTcxODE1MTIwNCwicGF0aCI6Ii8xNDY5MTM3MDQvMzM4NzgwMzcwLTJmNTRiMWE2LWIwZGMtNDk2ZS1iMmNlLTk3Nzg2ZGY1MjVmZC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwNjEyJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDYxMlQwMDEzMjRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1iODRmNTA2YzE0Y2I3OTM1OTlhMGJkM2I5MzE1NzllOWZlY2QwMWUzNzU0NjY1NjNmMWMyNmE0NzE4MjI5MzVkJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.rQemr4aKAb3KHuMDpFvAfyKLzYIy6IbH8qf9YL7Xr5c)
 
 ### Setting up on localhost
-run ./setup.sh <br />
-run ./start.sh <br />
+Navigate to the root directory then run the following scripts:
+```
+./setup.sh
+```
+```
+./start.sh
+```
 send Ctrl+C to stop all services <br />
 
 ### Description
