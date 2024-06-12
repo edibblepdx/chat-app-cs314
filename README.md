@@ -14,9 +14,9 @@ Navigate to the root directory then run the following scripts:
 send Ctrl+C to stop all services <br />
 
 ### Description
-This chat app is able to give users a responsive, effective, and overall great experience.
-It supports real time communication between multple users to fulfill all user's needs.
-There are a number of features that this chat application supports: <br /> 
+This microservices chat app is able to give users a responsive, effective, and overall 
+great experience. It supports real time communication between multple users to fulfill 
+all user's needs. There are a number of features that this chat application supports: <br /> 
 <br />
     -Real time Communication <br /> 
     -Authentication <br />
