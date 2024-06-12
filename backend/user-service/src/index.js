@@ -6,8 +6,7 @@ const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');
 //const rabbitMQService = require('./services/rabbitMQService');
 
-const URL = process.env.BASE_URL || 'http://localhost';
-const FrontendUrl = process.env.FRONTEND_URL || 'http://localhost';
+const FrontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
 const PORT = process.env.PORT || 8000;	// PORT
 const app = express();					// express app
 

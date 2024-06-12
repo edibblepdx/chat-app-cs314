@@ -1,19 +1,38 @@
 #!/bin/bash
 
+function sigint_handler()
+{
+    echo "Stopping..."
+    for pid in "${pids[@]}"; do
+        kill -SIGINT $pid
+    done
+    exit
+}
+
+declare -a pids=()
+
+trap sigint_handler SIGINT
+
 echo "Starting..."
 
 cd frontend
-echo "Installing frontend dependencies..."
-npm install
+echo "Starting frontend in background..."
+npm start &
 
 cd ../backend/gateway
-echo "Installing gateway dependencies..."
-npm install
+echo "Starting gateway in background..."
+npm start &
 
 cd ../chat-service
-echo "Installing chat-service dependencies..."
-npm install
+echo "Starting chat service in background..."
+npm start &
 
 cd ../user-service
-echo "Installing user-service dependencies..."
-npm install
+echo "Starting user service in background..."
+npm start &
+
+sleep 5
+echo "All services started."
+echo "Press Ctrl+C to stop."
+
+wait

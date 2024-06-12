@@ -15,8 +15,8 @@ const FrontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
 
 // middleware
 router.use(cors({
-    credentials: true, 
-    origin: FrontendUrl // react
+    origin: FrontendUrl, // react
+    credentials: true 
 }));
 
 router.post('/register', registerUser);                                 // POST register a new user

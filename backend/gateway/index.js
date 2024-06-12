@@ -11,14 +11,15 @@ const PORT = process.env.PORT || 8000;
 
 // middleware
 app.use(cors({
-    credentials: true,
-    origin: FrontendUrl // React app
+    origin: FrontendUrl, // React app
+    credentials: true
 }));
 app.use(express.json());
 
 app.use('/chats', proxy(ChatServiceUrl));  // chats
-app.use('/user', proxy(UserServiceUrl));   // user
+
+app.use('/user', proxy(UserServiceUrl));  // user
 
 app.listen(PORT, () => {
-    console.log('Gateway is listening on Port ${PORT}');
+    console.log(`Gateway is listening on Port ${PORT}`);
 })

@@ -12,7 +12,7 @@ import { socket } from './socket';
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 
-axios.defaults.baseURL = process.env.REACT_APP_GATEWAY_URL || 'http://localhost';
+axios.defaults.baseURL = process.env.REACT_APP_GATEWAY_URL || 'http://localhost:8000';
 axios.defaults.withCredentials = true;
 
 export default function App() {

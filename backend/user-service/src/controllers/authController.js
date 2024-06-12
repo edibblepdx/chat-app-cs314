@@ -10,7 +10,10 @@ const expirationDate = new Date(
     Date.now() + COOKIE_EXPIRATION_DAYS * 24 * 60 * 60 * 1000
 );
 const cookieOptions = {
-    expiresIn: COOKIE_EXPIRATION_DAYS * 24 * 60 * 60 * 1000,
+    expiresIn: expirationDate,
+    httpOnly: true,
+    SameSite: "Lax",
+    //secure: true,
 };
 const oAuth2Client = new OAuth2Client(
     process.env.CLIENT_ID
@@ -91,7 +94,7 @@ const loginUser = async (req, res) => {
         // check if passwords match
         const match = await comparePassword(password, user.password);
         if (match) {
-            jwt.sign({email: user.email, id: user._id, name: user.name}, jwtSecret, cookieOptions, (err, token) => {
+            jwt.sign({email: user.email, id: user._id, name: user.name}, jwtSecret, {}, (err, token) => {
                 if (err) throw err;
                 return res.cookie('token', token).json(user);
             });

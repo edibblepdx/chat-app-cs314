@@ -17,8 +17,8 @@ const FrontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
 
 // middleware
 router.use(cors({
-    credentials: true,
-    origin: FrontendUrl // React app
+    origin: FrontendUrl, // React app
+    credentials: true
 }));
 
 router.get('/', authenticateToken, getAvailableChats);                  // GET get all available chats for a user
