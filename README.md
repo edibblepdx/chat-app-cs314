@@ -54,7 +54,8 @@ It also stores the id of all messages were sent in that chat, the id of all user
 user that created it for administration purposes, and of course the name of the chat. For each 
 message that is created, it has a unique id, an id for the user that sent it, the user's name, 
 the message itself, and a time stamp of when it was created. These models are essential to create 
-a satisfactory chatting experience. Each of these services are independently deployable.
+a satisfactory chatting experience. The chat service also manages the websocket connections and
+the chat events. Each of these services are independently deployable.
 
 ### Testing
 To test our application we decided that testing with interactions and user stories was going to be 
